@@ -1,42 +1,131 @@
-import Image from "next/image";
-import { Import } from "lucide-react";
+
 import Link from "next/link";
+import Image from "next/image";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { Button } from "../ui/button";
+
 const Navbar = () => {
   return (
-    <nav className="font-roboto flex h-20 grid-cols-1 items-center justify-between gap-6 bg-blue-500/25 sm:grid-cols-2 lg:grid-cols-4">
-      <div className="mx-auto ml-10 flex w-full max-w-7xl gap-2">
-        <Image
-          src="/cars/fb.png"
-          alt="logo"
-          width={30}
-          height={30}
-          className="mb-2"
-        />
-        <p className="font-roboto-mono text-3xl font-bold">Travel City</p>
+    <nav className="flex items-center justify-between bg-blue-500/25 px-4 py-2 text-black shadow-md md:px-6 md:py-4">
+      <div className="flex items-center space-x-3">
+        <Link
+          href="/"
+          className="flex items-center space-x-2 text-lg font-bold"
+        >
+          <Image src="/logo.png" alt="Logo" width={70} height={70} />
+          <span> Quick Cab</span>
+        </Link>
       </div>
-      <div className="ml-48 flex">
-        <ul className="flex space-x-6">
-          <Link href="/">
-            <li>HOME</li>
+      <ul className="hidden space-x-6 text-lg md:hidden lg:flex">
+        <li>
+          <Link href="/" className="transition-colors hover:text-yellow-300">
+            Home
           </Link>
-          <Link href="/">
-            <li>CAB</li>
+        </li>
+        <li>
+          <Link href="/cab" className="transition-colors hover:text-yellow-300">
+            Cab
           </Link>
-          <Link href="/">
-            <li>DESTINATION</li>
+        </li>
+        <li>
+          <Link href="/" className="transition-colors hover:text-yellow-300">
+            Tour Package
           </Link>
-          <Link href="/">
-            <li>PACKAGES</li>
+        </li>
+        <li>
+          <Link
+            href="/contact"
+            className="transition-colors hover:text-yellow-300"
+          >
+            Contact
           </Link>
-          <Link href="/">
-            <li>CONTACT US</li>
+        </li>
+        <li>
+          <Link
+            href="/about"
+            className="transition-colors hover:text-yellow-300"
+          >
+            About
           </Link>
-        </ul>
-      </div>
-      <div className="ml-6 mr-10 flex">
-        <button className="w-40 rounded-lg border bg-blue-500 p-1.5 text-white hover:bg-blue-500/75">
-          BOOK A RIDE
-        </button>
+        </li>
+      </ul>
+      <button>
+        <Link
+          href="/about"
+          className="rounded-lg border bg-blue-500 p-3 transition-colors hover:text-yellow-300"
+        >
+          Booka a Ride
+        </Link>
+      </button>
+
+      <div className="block md:block lg:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <Menu />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Are you absolutely sure?</SheetTitle>
+              <SheetDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </SheetDescription>
+            </SheetHeader>
+            <div>
+              <ul className="flex flex-col text-lg">
+                <li>
+                  <Link
+                    href="/"
+                    className="transition-colors hover:text-yellow-300"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/cab"
+                    className="transition-colors hover:text-yellow-300"
+                  >
+                    Cab
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/"
+                    className="transition-colors hover:text-yellow-300"
+                  >
+                    Tour Package
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="transition-colors hover:text-yellow-300"
+                  >
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="transition-colors hover:text-yellow-300"
+                  >
+                    About
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </SheetContent>
+        </Sheet>
+
       </div>
     </nav>
   );
