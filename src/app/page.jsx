@@ -1,14 +1,20 @@
 import React from "react";
+// import HomePage from "@/components/Section/HomePageSection";
+// import HomePageSection from "@/components/Section/HomePageSection";
+// import Banner from "@/components/Section/Banner";
+// import Destination from "@/components/Section/Destination";
+import CabBookingForm from "@/components/Section/CabBookingForm";
+import RoundTrip from "@/components/Section/RoundTrip";
 
 const HomePage = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center">
-      <h1 className="mb-4 text-3xl font-medium">
-        NextJS Project Starter Template
-      </h1>
-      <p className="text-base font-normal">
-        Built with NextJS 14.2.21, Tailwind CSS, Shadcn UI.
-      </p>
+    <div className="">
+      <CabBookingForm />
+      <RoundTrip />
+
+      {/* <HomePageSection />
+        <Banner/> 
+        <Destination/> */}
     </div>
   );
 };
