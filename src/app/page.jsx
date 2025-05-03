@@ -1,16 +1,12 @@
 import React from "react";
+import Homepage from "@/components/Section/Homepage";
 
-const HomePage = () => {
+const Page = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center">
-      <h1 className="mb-4 text-3xl font-medium">
-        NextJS Project Starter Template
-      </h1>
-      <p className="text-base font-normal">
-        Built with NextJS 14.2.21, Tailwind CSS, Shadcn UI.
-      </p>
+    <div className="bg-blue-100/50">
+      <Homepage />
     </div>
   );
 };
 
-export default HomePage;
+export default Page;
