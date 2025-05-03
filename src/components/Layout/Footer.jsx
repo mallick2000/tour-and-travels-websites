@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 
 export default function Footer() {
   return (
+
     <footer className="bg-black">
       <div className="ml-10 mr-10 flex justify-between p-6 text-white">
         <div className="">
@@ -86,5 +87,6 @@ export default function Footer() {
         </p>
       </div>
     </footer>
+
   );
 }
