@@ -1,6 +1,6 @@
-
 import Link from "next/link";
 import Image from "next/image";
+
 import {
   Sheet,
   SheetContent,
@@ -41,18 +41,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link
-            href="/contact"
-            className="transition-colors hover:text-yellow-300"
-          >
+          <Link href="/" className="transition-colors hover:text-yellow-300">
             Contact
           </Link>
         </li>
         <li>
-          <Link
-            href="/about"
-            className="transition-colors hover:text-yellow-300"
-          >
+          <Link href="/" className="transition-colors hover:text-yellow-300">
             About
           </Link>
         </li>
@@ -125,7 +119,6 @@ const Navbar = () => {
             </div>
           </SheetContent>
         </Sheet>
-
       </div>
     </nav>
   );

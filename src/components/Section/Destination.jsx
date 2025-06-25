@@ -42,7 +42,7 @@ const destinations = [
       "It is renowned for its magnificent Kalinga architecture and spiritual significance.",
   },
   {
-    name: "JAGANNATH TEMPLE",
+    name: "BALESORE",
     image: "/place/emami.jpg",
     description:
       "The Emami Jagannath Temple in Balasore is a replica of the famous Puri Jagannath Temple, built by the Emami Group.",
@@ -66,7 +66,7 @@ const destinations = [
       "The island is famous as a centre of religious worship due to the temple of Goddess Kalijai.",
   },
   {
-    name: "KAPILASH TEMPLE",
+    name: "KAPILASH",
     image: "/place/kapilash.jpg",
     description:
       "The island is famous as a centre of religious worship due to the temple of Goddess Kalijai.",
@@ -111,15 +111,12 @@ export default function Destinations() {
   const groupedDestinations = chunkArray(destinations, 3);
 
   return (
-    <div className="min-h-screen bg-blue-50/25 px-4 py-12 md:px-8">
-      <h1 className="mb-4 flex justify-center font-sans text-4xl font-bold">
-        EXPLORE ODISHA
-      </h1>
-      <p className="font-roboto mx-auto mb-6 w-full max-w-7xl text-center text-lg font-normal">
+    <div className="bg-blue-50/25 px-4 py-12 md:px-8">
+      <h2 className="flex justify-center text-4xl font-bold">EXPLORE ODISHA</h2>
+      <p className="mx-auto mb-6 w-full max-w-7xl text-center text-lg">
         Odisha, known as the City of Temples offers a diverse range of
         attractions including ancient temples, beaches, wildlife sanctuaries,
-        and tribal culture. Exploring Odisha can be a journey through history,
-        nature, and culture, showcasing its rich heritage and unique charm
+        and tribal culture.
       </p>
 
       <Carousel
@@ -146,8 +143,8 @@ export default function Destinations() {
                       height={400}
                       className="h-80 w-full object-cover"
                     />
-                    <CardContent className="relative p-4 text-center font-sans">
-                      <h2 className="mb-2 font-sans text-4xl font-semibold">
+                    <CardContent className="relative p-4 text-center">
+                      <h2 className="mb-2 text-4xl font-semibold">
                         {dest.name}
                       </h2>
                       <p className="mb-4 text-center text-lg font-normal">

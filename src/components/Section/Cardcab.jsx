@@ -72,14 +72,14 @@ export default function Cardcab() {
   ];
   return (
     <div className="bg-blue-50/25 p-8">
-      <p className="mb-12 flex justify-center font-sans text-4xl font-bold">
+      <h2 className="mb-12 flex justify-center text-4xl font-bold">
         CABS YOU NEED
-      </p>
+      </h2>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {cars.map((car, index) => (
           <div
             key={index}
-            className="hover: h-[500px] translate-y-0 transform overflow-hidden rounded-xl bg-white shadow-md transition duration-300 ease-in-out hover:-translate-y-1 hover:border hover:shadow-xl"
+            className="h-[500px] transform overflow-hidden rounded-xl bg-white shadow-md hover:border hover:shadow-xl"
           >
             <Image
               src={car.image}
@@ -88,14 +88,14 @@ export default function Cardcab() {
               height={200}
               className="my-8 h-40 w-full object-contain"
             />
-            <div className="relative p-4 text-center font-sans">
+            <div className="relative p-4 text-center">
               <h2 className="mb-2 text-4xl font-semibold">{car.name}</h2>
               <p className="mb-4 text-xl font-semibold">{car.detail}</p>
               <p className="mb-4 text-center text-lg font-normal">
                 {car.description}
               </p>
               <button className="w-40 rounded-full bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700">
-                VIEW DETAILS
+                BOOK NOW
               </button>
             </div>
           </div>
