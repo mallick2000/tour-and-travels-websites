@@ -1,11 +1,11 @@
 import React from "react";
-import Cab from "@/components/Section/Cab";
+import Cardcab from "@/components/Section/Cardcab";
 import Destination from "@/components/Section/Destination";
 
 const HomePage = () => {
   return (
     <div className="">
-      <Cab />
+      <Cardcab />
       <Destination />
     </div>
   );

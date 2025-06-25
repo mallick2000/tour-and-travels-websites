@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 
 export default function CabBookingForm() {
   return (
-    <section className="flex flex-col items-center justify-center py-24">
-      <div className="relative mt-4 w-full rounded-md border p-8 md:w-2/5 lg:w-2/5">
+    <section className="ml-20 flex-col items-center justify-center bg-auto py-24 md:bg-contain">
+      <div className="relative mt-4 w-full rounded-xl border-2 border-white bg-white p-8 shadow-2xl md:w-2/5 lg:w-2/5">
         <div className="absolute -top-10 left-0 right-0 flex items-center justify-center">
           <p className="rounded-xl border bg-blue-500 p-2 text-white">
             Book Online Cab
