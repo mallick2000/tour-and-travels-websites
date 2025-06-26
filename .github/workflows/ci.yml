@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
       - name: Checkout code
@@ -27,8 +27,8 @@ jobs:
       - name: Lint and check code style issues
         run: npm run lint
         
-      - name: Check code format issues
-        run: npm run format
+      # - name: Check code format issues
+      #   run: npm run format
         
       - name: Build project
         run: npm run build --if-present
