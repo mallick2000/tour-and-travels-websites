@@ -1,16 +1,20 @@
+import CabBookingSection from "@/components/CabPage/BannerSection";
+import { Spacing } from "@/components/CabPage/CarRent";
+import RecentSearches from "@/components/CabPage/RecentSearch";
+import TaxiService from "@/components/CabPage/Sevice";
+import OurServices from "@/components/HomePage/Section/OurServices";
 import React from "react";
-import Banner from "@/components/Section/Banner";
-import Cabspecs from "@/components/Section/Cabspecs";
-import Cabdata from "@/components/Section/Cabdata";
-const Page = () => {
+
+const page = () => {
   return (
     <>
-      <div>
-        <Banner />
-        <Cabspecs />
-        <Cabdata />
-      </div>
+      <CabBookingSection />
+      <RecentSearches />
+      <Spacing />
+      <TaxiService />
+      <OurServices />
     </>
   );
 };
-export default Page;
+
+export default page;

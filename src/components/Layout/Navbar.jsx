@@ -41,7 +41,10 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link href="/" className="transition-colors hover:text-yellow-300">
+          <Link
+            href="/contact"
+            className="transition-colors hover:text-yellow-300"
+          >
             Contact
           </Link>
         </li>
@@ -54,9 +57,9 @@ const Navbar = () => {
       <button>
         <Link
           href="/about"
-          className="rounded-lg border bg-blue-500 p-3 transition-colors hover:text-yellow-300"
+          className="rounded-lg border bg-amber-500 p-3 text-white hover:text-white hover:bg-amber-400"
         >
-          Booka a Ride
+          Book a Ride
         </Link>
       </button>
 
@@ -85,7 +88,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    href="/cab"
+                    href="/"
                     className="transition-colors hover:text-yellow-300"
                   >
                     Cab
@@ -101,7 +104,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    href="/contact"
+                    href="/"
                     className="transition-colors hover:text-yellow-300"
                   >
                     Contact
@@ -109,7 +112,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    href="/about"
+                    href="/"
                     className="transition-colors hover:text-yellow-300"
                   >
                     About
@@ -123,5 +126,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;

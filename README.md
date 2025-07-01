@@ -1,35 +1,8 @@
-# Next.js Project Starter
-
-## Overview
-
-This project is a starter template for [Next.js](https://nextjs.org/), a React framework. It's initialized using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) for quick setup.
-
-The project includes pre-configured settings for [Tailwind CSS](https://tailwindcss.com/) and utilizes the [Shadcn UI](https://ui.shadcn.com/) theme along with [Lucide icons](https://lucide.dev/).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-To begin, follow these steps:
-
-**1. Clone the Repository:**
-
-```bash
-git clone <repository-url>
-cd nextjs-project-starter
-```
-
-**2. Install Dependencies:**
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
-```
-
-**3. Run the Development Server:**
+First, run the development server:
 
 ```bash
 npm run dev
@@ -41,78 +14,23 @@ pnpm dev
 bun dev
 ```
 
-**4. View the Application:**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open your browser and navigate to `http://localhost:3000` to see the application in action.
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-## Project Structure
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-```lua
-.project-root
-├── .github
-│   └── workflows
-│       └── ci.yml
-├── .husky
-├── .vscode
-├── node_modules
-├── public
-│   └── favicon.ico
-├── src
-│   ├── app
-│   │   ├── globals.css
-│   │   ├── layout.jsx
-│   │   └── page.jsx
-│   ├── components
-│   │   ├── Layout
-│   │   │   ├── Footer.jsx
-│   │   │   └── Navbar.jsx
-│   │   └── Screen
-│   │       └── .gitkeep
-│   ├── lib
-│   │   ├── api.js
-│   │   └── utils.js
-│   └── utils
-│       ├── dateUtils.js
-│       ├── numberUtils.js
-│       └── stringUtils.js
-├── .eslintrc.json
-├── .eslintignore
-├── .gitignore
-├── .huskyrc
-├── .lintstagedrc
-├── .prettierrc
-├── components.json
-├── jsconfig.json
-├── next.config.js
-├── package-lock.json
-├── package.json
-└── postcss.config.js
-```
+## Learn More
 
-**GitHub Actions:**
+To learn more about Next.js, take a look at the following resources:
 
-- `.github/workflows/ci.yml` for CI/CD pipeline setup.
-  **Husky Integration:**
-- `.husky` for managing pre-commit hooks.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-**Next.js App Directory:**
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- `src/app` for global CSS, layout, and routing.
-- Modularized components under `src/components`.
+## Deploy on Vercel
 
-**Reusable Utilities:**
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- `src/utils` for helper functions (e.g., dateUtils.js, stringUtils.js).
-
-**API Layer:**
-
-- `src/lib/api.js` for centralizing API calls.
-
-**Configuration Files:**
-
-- `.eslintrc.json`, `.prettierrc`, and `.lintstagedrc` for maintaining code quality.
-- `next.config.js` for Next.js-specific configuration.
-
-**Styling:**
-
-- `postcss.config.js` for PostCSS setup, which often works with Tailwind CSS.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
