@@ -57,8 +57,9 @@ export default function Testimonials() {
   return (
     <section className="bg-gradient-to-b from-gray-50 to-white py-16 px-6 md:px-20">
       <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
-          What Our Customers Say
+        <h1 className="text-3xl mb-2 text-center text-gray-800 tracking-wide">
+          <span className="font-light"> What Our</span>
+          <span className="font-bold text-blue-500"> Customers Say</span>
         </h1>
         <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
           Real feedback from travelers who trusted us with their journey.

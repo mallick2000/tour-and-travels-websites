@@ -38,6 +38,11 @@ const PackageData = [
     image: "/place/puri.jpg",
     location: "Puri",
   },
+  {
+    title: "",
+    image: "/place/emami.jpg",
+    location: "Baleswar",
+  },
 ];
 
 export default function Packages() {
@@ -48,7 +53,7 @@ export default function Packages() {
       </h1>
 
       <Carousel
-        className="mx-auto w-full max-w-7xl"
+        className="mx-auto w-full "
         plugins={[
           Autoplay({
             delay: 2000,
@@ -59,7 +64,7 @@ export default function Packages() {
           {PackageData.map((data, index) => (
             <CarouselItem
               key={index}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/5"
             >
               <Card className="relative h-96 w-full rounded-xl group overflow-hidden ">
                 <Image

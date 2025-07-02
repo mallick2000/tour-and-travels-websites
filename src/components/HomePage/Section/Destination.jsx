@@ -43,9 +43,11 @@ const destinations = [
 export default function Destination() {
   return (
     <section className="px-4 py-12 md:px-12 lg:px-20">
-      <h1 className="text-3xl font-bold mb-2 text-center text-gray-800">
-        Featured Destination
-      </h1>
+      <h2 className="font-sans text-4xl tracking-widest text-gray-800 text-center">
+        <span className="font-light">Travel</span>
+        <span className="font-bold text-blue-500"> Spotlight</span>
+      </h2>
+
       <p className="text-center text-xl font-light mb-8">
         Step into Odisha&apos;s hidden treasure, rich in heritage, beauty, and
         spirit.

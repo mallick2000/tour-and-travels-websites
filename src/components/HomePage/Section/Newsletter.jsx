@@ -26,11 +26,11 @@ export default function NewsletterBanner() {
             discover
           </p>
         </div>
-        <form className="flex items-center w-full md:w-1/2">
+        <form className="flex items-center w-[450px]">
           <input
             type="email"
             placeholder="Your Mail"
-            className="flex-grow p-2 rounded-l-md focus:outline-none bg-white"
+            className="flex-grow p-2 rounded-l-md focus:outline-none bg-white "
           />
           <button
             type="submit"
