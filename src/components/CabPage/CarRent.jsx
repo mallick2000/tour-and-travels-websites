@@ -53,16 +53,25 @@ const tourPackages = [
     rating: 4.8,
     price: 2370,
   },
+  {
+    image: "/place/tarini.jpg",
+    location: "Bhubaneswar",
+    title: "Bhubaneswar To Keonjhar Roundtrip",
+    hours: "6 Hours",
+    rating: 4.8,
+    price: 2370,
+  },
 ];
 
 export function Spacing() {
   return (
     <section className="px-4 py-12 md:px-12 lg:px-2">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-        Top Deals
+      <h1 className="text-3xl font-bold font-sans mb-6 text-center text-gray-800">
+        <span className="font-light">Swipe Right</span>
+        <span className="font-bold text-blue-500">&nbsp;on Great Rides</span>
       </h1>
       <Carousel
-        className="w-full max-w-screen-xl mx-auto px-4"
+        className="w-full max-w-7xl mx-auto px-4"
         plugins={[
           Autoplay({
             delay: 2000,
