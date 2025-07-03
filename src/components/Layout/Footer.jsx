@@ -27,7 +27,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/book" className="hover:text-yellow-300">
+              <Link href="/cab" className="hover:text-yellow-300">
                 Book a Cab
               </Link>
             </li>
@@ -51,25 +51,22 @@ export default function Footer() {
           </h3>
           <ul className="space-y-1 text-sm text-gray-300">
             <li>
-              <Link href="/services/one-way" className="hover:text-yellow-300">
+              <Link href="/cab" className="hover:text-yellow-300">
                 One-way Cabs
               </Link>
             </li>
             <li>
-              <Link
-                href="/services/round-trip"
-                className="hover:text-yellow-300"
-              >
+              <Link href="/cab" className="hover:text-yellow-300">
                 Round Trip Cabs
               </Link>
             </li>
             <li>
-              <Link href="/services/airport" className="hover:text-yellow-300">
+              <Link href="/cab" className="hover:text-yellow-300">
                 Airport Cabs
               </Link>
             </li>
             <li>
-              <Link href="/services/hourly" className="hover:text-yellow-300">
+              <Link href="/cab" className="hover:text-yellow-300">
                 Hourly Cabs
               </Link>
             </li>

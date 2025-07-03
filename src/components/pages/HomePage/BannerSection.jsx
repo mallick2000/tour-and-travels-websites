@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const BannerSection = () => {
   return (
-    <div className="relative w-full h-[750px]">
+    <section className="relative w-full h-[750px]">
       {/* Background Image */}
       <Image
         src="/Tour4.jpg"
@@ -116,7 +116,7 @@ const BannerSection = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

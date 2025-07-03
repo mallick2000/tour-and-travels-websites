@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+
 import { Label } from "@/components/ui/label";
 import { Button } from "../ui/button";
 import { CarTaxiFront } from "lucide-react";
 import Link from "next/link";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 const tripOptions = [
   { id: "oneway", label: "Outstation One-way", title: "Book Online Cab" },
@@ -21,6 +23,76 @@ export default function CabBookingForm() {
   const [pickupTime, setPickupTime] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [returnTime, setReturnTime] = useState("");
+  const [currentStep, setCurrentStep] = useState(0);
+  const lastStep = 3;
+  const [bookingDetails, setBookingDetails] = useState({
+    fromLocation: "",
+    toLocation: "",
+    pickupDate: "",
+    pickupTime: "",
+    returnDate: "",
+    returnTime: "",
+  });
+  const [customerInfo, setCustomerInfo] = useState({
+    fullName: "",
+    phone: "",
+    currentCity: "",
+  });
+
+  const handleNext = () => {
+    console.log("Next clicked");
+    console.log("Booking Details:", bookingDetails);
+    setCurrentStep((prevStep) => prevStep + 1);
+  };
+
+  const handlePrevious = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
+  };
+
+  const handleTourTypeChange = (value) => {
+    setSelectedOption(value);
+    // console.log(e);
+    setCurrentStep(1);
+  };
+
+  const handleTourInfoChange = (e) => {
+    const { name, value } = e.target;
+    setBookingDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleCustomerInfoChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Build the payload to send to the backend
+    const payload = {
+      tripType: selectedOption,
+      // ...bookingDetails,
+      bookingDetails: {
+        fromLocation: bookingDetails.fromLocation.trim(),
+        toLocation: bookingDetails.toLocation.trim(),
+        pickupDate: bookingDetails.pickupDate,
+        pickupTime: bookingDetails.pickupTime,
+        returnDate: bookingDetails.returnDate,
+        returnTime: bookingDetails.returnTime,
+      },
+      // ...customerInfo,
+      customerInfo: {
+        fullName: customerInfo.fullName.trim(),
+        phone: customerInfo.phone,
+        currentCity: customerInfo.currentCity.trim(),
+      },
+    };
+    console.log("Payload:", payload);
+  };
 
   const getTitle = () => {
     return tripOptions.find((opt) => opt.id === selectedOption)?.title;
@@ -34,9 +106,46 @@ export default function CabBookingForm() {
           {getTitle()}
         </h2>
 
+        {/* Render steps based on currentStep */}
+        {currentStep === 0 && (
+          <StepOne
+            selectedOption={selectedOption}
+            handleTourTypeChange={handleTourTypeChange}
+          />
+        )}
+        {currentStep === 1 && (
+          <StepTwo
+            bookingDetails={bookingDetails}
+            handleChange={handleTourInfoChange}
+          />
+        )}
+        {currentStep === 2 && (
+          <StepThree
+            customerInfo={customerInfo}
+            handleChange={handleCustomerInfoChange}
+          />
+        )}
+        <div className="mt-8 flex justify-center gap-4">
+          {currentStep > 0 && (
+            <Button onClick={handlePrevious}>Previous</Button>
+          )}
+
+          {currentStep < lastStep - 1 && (
+            <Button onClick={handleNext}>Next</Button>
+          )}
+
+          {currentStep === lastStep - 1 && (
+            <Button type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
+          )}
+        </div>
+
+        {/*  TODO: On Successfull submit show success message in place of form. */}
+
         {/* Trip Type Radio Buttons */}
         <div className="mb-8 flex flex-wrap justify-center gap-4 sm:gap-6">
-          {tripOptions.map((option) => (
+          {/* {tripOptions.map((option) => (
             <label
               key={option.id}
               className={`flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2 ${
@@ -47,15 +156,15 @@ export default function CabBookingForm() {
             >
               <input
                 type="radio"
-                name="tripType"
+                name=""
                 value={option.id}
                 checked={selectedOption === option.id}
-                onChange={() => setSelectedOption(option.id)}
+                onChange={(e) => handleTourTypeChange(e)}
                 className="accent-blue-600"
               />
               <span>{option.label}</span>
             </label>
-          ))}
+          ))} */}
         </div>
 
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
@@ -130,6 +239,7 @@ export default function CabBookingForm() {
                         value={pickupDate}
                         onChange={(e) => setPickupDate(e.target.value)}
                         className="border-gray-700"
+                        min={new Date().toISOString().split("T")[0]}
                         required
                       />
                     </div>
@@ -146,8 +256,15 @@ export default function CabBookingForm() {
                         value={pickupTime}
                         onChange={(e) => setPickupTime(e.target.value)}
                         className="border-gray-700"
+                        // min={new Date().toLocaleTimeString().substring(0, 5)}
+                        min={
+                          pickupDate === new Date().toISOString().split("T")[0]
+                            ? new Date().toTimeString().slice(0, 5)
+                            : undefined
+                        }
                         required
                       />
+                      {new Date().toLocaleTimeString().substring(0, 5)}
                     </div>
                   </div>
 
@@ -165,6 +282,11 @@ export default function CabBookingForm() {
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
                         className="border-gray-700"
+                        min={
+                          new Date(pickupDate || new Date())
+                            ?.toISOString()
+                            .split("T")[0]
+                        }
                         required
                       />
                     </div>
@@ -290,7 +412,6 @@ export default function CabBookingForm() {
               </div>
             </>
           )}
-
           {/* Submit Button */}
           <Link href="/carRoute">
             <Button
@@ -305,3 +426,89 @@ export default function CabBookingForm() {
     </section>
   );
 }
+
+const StepOne = ({ selectedOption, handleTourTypeChange }) => {
+  return (
+    <>
+      Step One
+      <RadioGroup
+        defaultValue="option-one"
+        value={selectedOption}
+        onValueChange={(value) => handleTourTypeChange(value)}
+      >
+        <div className="grid grid-cols-4 gap-4 space-y-2">
+          {tripOptions.map((option) => (
+            <Label
+              key={option.id}
+              htmlFor={option.id}
+              className="space-x-2 border border-red-300 p-4 cursor-pointer flex flex-row items-center"
+            >
+              <RadioGroupItem
+                value={option.id}
+                id={option.id}
+                className="border-red-500"
+              />
+              <div>
+                <div className="font-semibold">{option.label}</div>
+                <div className="text-sm text-gray-500">{option.title}</div>
+              </div>
+            </Label>
+          ))}
+        </div>
+      </RadioGroup>
+    </>
+  );
+};
+const StepTwo = ({ bookingDetails, handleChange }) => {
+  return (
+    <>
+      Step Two
+      <input
+        type="text"
+        name="fromLocation"
+        value={bookingDetails.fromLocation}
+        onChange={handleChange}
+      />
+      <input
+        type="date"
+        name="pickupDate"
+        value={bookingDetails.pickupDate}
+        onChange={handleChange}
+      />
+      <input
+        type="time"
+        name="pickupTime"
+        value={bookingDetails.pickupTime}
+        onChange={handleChange}
+      />
+    </>
+  );
+};
+const StepThree = ({ customerInfo, handleChange }) => {
+  return (
+    <>
+      Step Three
+      <input
+        type="text"
+        name="fullName"
+        placeholder="Full Name"
+        value={customerInfo.fullName}
+        onChange={handleChange}
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={customerInfo.email}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="currentCity"
+        placeholder="currentCity"
+        value={customerInfo.currentCity}
+        onChange={handleChange}
+      />
+    </>
+  );
+};

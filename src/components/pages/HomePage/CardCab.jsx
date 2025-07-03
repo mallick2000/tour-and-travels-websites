@@ -65,7 +65,7 @@ const carData = [
   },
 ];
 
-export default function Home() {
+export default function CardCab() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 

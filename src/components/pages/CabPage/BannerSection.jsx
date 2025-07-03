@@ -1,5 +1,5 @@
 import React from "react";
-import CabBookingForm from "./CabBookingForm";
+import CabBookingForm from "../../Form/CabBookingForm";
 import Image from "next/image";
 
 function CabBookingSection() {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function NewsletterBanner() {
+export default function Newsletter() {
   return (
     <section className="relative h-40 flex items-center justify-center px-6 overflow-hidden">
       {/* Background Image */}

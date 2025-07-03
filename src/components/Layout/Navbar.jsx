@@ -2,128 +2,94 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Menu } from "lucide-react";
 import {
   Sheet,
+  SheetTrigger,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
-const Navbar = ({ isAbsolute = false }) => {
+const Navbar = () => {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isAbsolute = isHome;
   return (
     <nav
       className={`${
-        isAbsolute ? "absolute top-0 left-0 w-full z-50" : "relative"
-      } flex items-center justify-between  px-4 py-2 text-black  md:px-6 md:py-4`}
+        isAbsolute
+          ? "absolute top-0 left-0 w-full z-50 text-white px-4 py-3 md:px-8 md:py-4 flex items-center justify-between"
+          : "relative  text-white px-4 py-3 md:px-8 md:py-4 flex items-center justify-between bg-gray-900"
+      }
+        `}
     >
       {/* Logo */}
-      <div className="flex items-center space-x-3">
-        <Link
-          href="/"
-          className="flex items-center space-x-2 text-lg font-bold"
-        >
-          <Image src="/logo.png" alt="Logo" width={70} height={70} />
-          <span className=" text-slate-300">Quick Cab</span>
-        </Link>
-      </div>
+      <Link href="/" className="flex items-center space-x-3">
+        <Image src="/logo.png" alt="Logo" width={50} height={50} />
+        <span className="text-2xl font-semibold text-white">Quick Cab</span>
+      </Link>
 
-      {/* Desktop Menu */}
-      <ul className="hidden lg:flex space-x-6 text-lg">
-        <li>
+      {/* Desktop Nav */}
+      <div className="hidden lg:flex items-center space-x-8 text-lg">
+        {[
+          ["Home", "/"],
+          ["Cab", "/cab"],
+          ["Tours", "/tours"],
+          ["Contact", "/contact"],
+          ["About", "/about"],
+          ["Login", "/profile"],
+        ].map(([label, href]) => (
           <Link
-            href="/"
-            className="hover:text-gray-900 hover:underline text-slate-300"
+            key={href}
+            href={href}
+            className="hover:text-yellow-400 transition duration-300 hover:underline"
           >
-            Home
+            {label}
           </Link>
-        </li>
-        <li>
-          <Link
-            href="/cab"
-            className="hover:text-gray-900 hover:underline text-slate-300"
-          >
-            Cab
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/tours"
-            className="hover:text-gray-900 hover:underline text-slate-300"
-          >
-            Tour Package
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/contact"
-            className="hover:text-gray-900 hover:underline text-slate-300"
-          >
-            Contact
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/about"
-            className="hover:text-gray-900 hover:underline text-slate-300"
-          >
-            About
-          </Link>
-        </li>
-      </ul>
-
-      {/* Book a Ride Button */}
-      <div className="hidden md:block">
+        ))}
         <Link href="/cab">
-          <Button className="bg-blue-500 text-white hover:bg-blue-400">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-5">
             Book a Ride
           </Button>
         </Link>
       </div>
 
       {/* Mobile Menu */}
-      <div className="block lg:hidden">
+      <div className="lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
-              <Menu />
+              <Menu className="text-white" />
             </Button>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="bg-black text-white">
             <SheetHeader>
-              <SheetTitle className="text-xl font-bold">Menu</SheetTitle>
+              <SheetTitle className="text-white text-2xl">Menu</SheetTitle>
             </SheetHeader>
-            <ul className="flex flex-col gap-4 mt-6 text-lg">
-              <li>
-                <Link href="/" className="hover:text-yellow-400">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/cab" className="hover:text-yellow-400">
-                  Cab
-                </Link>
-              </li>
-              <li>
-                <Link href="/tours" className="hover:text-yellow-400">
-                  Tour Package
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-yellow-400">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-yellow-400">
-                  About
-                </Link>
-              </li>
+            <ul className="flex flex-col gap-5 mt-6 text-lg">
+              {[
+                ["Home", "/"],
+                ["Cab", "/cab"],
+                ["Tours", "/tours"],
+                ["Contact", "/contact"],
+                ["About", "/about"],
+                ["Login", "/profile"],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="hover:text-yellow-400 transition duration-300"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="/cab">
-                  <Button className="w-full mt-4 bg-blue-500 text-white hover:bg-blue-400">
+                  <Button className="w-full mt-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-full">
                     Book a Ride
                   </Button>
                 </Link>
