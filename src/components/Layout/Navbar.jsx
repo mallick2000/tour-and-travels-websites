@@ -50,11 +50,11 @@ const Navbar = () => {
             {label}
           </Link>
         ))}
-        <Link href="/cab">
+        {/* <Link href="/cab">
           <Button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-5">
             Book a Ride
           </Button>
-        </Link>
+        </Link> */}
       </div>
 
       {/* Mobile Menu */}
@@ -87,13 +87,13 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
-              <li>
+              {/* <li>
                 <Link href="/cab">
                   <Button className="w-full mt-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-full">
                     Book a Ride
                   </Button>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </SheetContent>
         </Sheet>

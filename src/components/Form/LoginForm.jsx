@@ -1,10 +1,20 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
+  const [type, setType] = useState("password");
+
+  const handlePasswordToggle = (e) => {
+    e.preventDefault();
+    setType((prev) => (prev === "password" ? "text" : "password"));
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-indigo-600">
       <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -29,7 +39,7 @@ const LoginForm = () => {
             />
           </div>
 
-          <div>
+          <div className="relative">
             <Label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
@@ -37,14 +47,22 @@ const LoginForm = () => {
               Password
             </Label>
             <Input
-              type="password"
+              type={type}
               id="password"
               name="password"
               required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full px-4 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter your password"
             />
+            <button
+              onClick={handlePasswordToggle}
+              className="absolute right-3 top-[32px] text-gray-600"
+              aria-label="Toggle password visibility"
+            >
+              {type === "password" ? <Eye size={20} /> : <EyeOff size={20} />}
+            </button>
           </div>
+
           <div className="text-right mt-2">
             <Link
               href="/resetPassword"

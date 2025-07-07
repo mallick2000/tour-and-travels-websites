@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
 
 const AboutUs = () => {
@@ -27,9 +28,11 @@ const AboutUs = () => {
           Read more about us
           <span className="ml-2 text-yellow-500">→</span>
         </a> */}
-        <Button className="bg-blue-500 px-6 py-3 hover:bg-blue-600 text-white font-semibold rounded-md w-32">
-          Read More
-        </Button>
+        <Link href="/about">
+          <Button className="bg-blue-500 px-6 py-3 hover:bg-blue-600 text-white font-semibold rounded-md w-32">
+            Read More
+          </Button>
+        </Link>
       </div>
 
       {/* Image */}
