@@ -64,24 +64,26 @@ export default function Destination() {
             className="relative h-80 overflow-hidden rounded-xl group text-white"
             // onClick={router.push(`/destination/${dest.title}`)}
           >
-            <Image
-              src={dest.image}
-              alt={dest.title}
-              fill
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-            />
+            <Link href={`/destination/${dest.title}`}>
+              <Image
+                src={dest.image}
+                alt={dest.title}
+                fill
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              />
 
-            <Link
-              href={`/destination/${dest.title}`}
-              className="absolute right-4 group-hover:bg-blue-500 transition duration-300  group-hover:text-white ease-in top-4 rounded-full bg-white/80 p-2 z-50 text-black backdrop-blur-sm"
-            >
-              <ArrowUpRight size={18} />
+              <Link
+                href={`/destination/${dest.title}`}
+                className="absolute right-4 group-hover:bg-blue-500 transition duration-300  group-hover:text-white ease-in top-4 rounded-full bg-white/80 p-2 z-50 text-black backdrop-blur-sm"
+              >
+                <ArrowUpRight size={18} />
+              </Link>
+              <div className="absolute inset-0 group-hover:from-black group-hover:to-black/10 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 z-10">
+                <h2 className="mb-2 text-xl font-semibold">{dest.title}</h2>
+                <p className="text-sm text-gray-200">{dest.description}</p>
+              </div>
             </Link>
-            <div className="absolute inset-0 group-hover:from-black group-hover:to-black/10 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 z-10">
-              <h2 className="mb-2 text-xl font-semibold">{dest.title}</h2>
-              <p className="text-sm text-gray-200">{dest.description}</p>
-            </div>
           </div>
         ))}
       </div>

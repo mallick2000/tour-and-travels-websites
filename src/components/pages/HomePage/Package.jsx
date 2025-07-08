@@ -49,14 +49,14 @@ export default function Packages() {
   return (
     <main className="px-4 py-8 md:px-16 lg:px-20 bg-gray-50">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">
-        Our Packages From Bhubaneswar:-
+        Trails from the Temple City:-
       </h1>
 
       <Carousel
         className="mx-auto w-full "
         plugins={[
           Autoplay({
-            delay: 2000,
+            delay: 4000,
           }),
         ]}
       >

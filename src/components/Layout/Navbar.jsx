@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "lucide-react";
+import { Menu, Home, Car, Map, User, FerrisWheel } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -17,14 +17,24 @@ const Navbar = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isAbsolute = isHome;
+
+  const navLinks = [
+    { href: "/", icon: <Home className="w-5 h-5" /> },
+    { href: "/cab", icon: <Car className="w-5 h-5" /> },
+    {
+      href: "/tours",
+      icon: <FerrisWheel className="w-5 h-5" />,
+    },
+    { href: "/profile", icon: <User className="w-5 h-5" /> },
+  ];
+
   return (
     <nav
       className={`${
         isAbsolute
           ? "absolute top-0 left-0 w-full z-50 text-white px-4 py-3 md:px-8 md:py-4 flex items-center justify-between"
-          : "relative  text-white px-4 py-3 md:px-8 md:py-4 flex items-center justify-between bg-gray-900"
-      }
-        `}
+          : "relative bg-gray-900 text-white px-4 py-3 md:px-8 md:py-4 flex items-center justify-between"
+      }`}
     >
       {/* Logo */}
       <Link href="/" className="flex items-center space-x-3">
@@ -32,29 +42,27 @@ const Navbar = () => {
         <span className="text-2xl font-semibold text-white">Quick Cab</span>
       </Link>
 
-      {/* Desktop Nav */}
+      {/* Desktop Menu */}
       <div className="hidden lg:flex items-center space-x-8 text-lg">
-        {[
-          ["Home", "/"],
-          ["Cab", "/cab"],
-          ["Tours", "/tours"],
-          ["Contact", "/contact"],
-          ["About", "/about"],
-          ["Login", "/profile"],
-        ].map(([label, href]) => (
+        {navLinks.map(({ label, href, icon }) => (
           <Link
             key={href}
             href={href}
-            className="hover:text-yellow-400 transition duration-300 hover:underline"
+            className="flex items-center gap-2 hover:text-yellow-400 transition duration-300 hover:underline"
           >
-            {label}
+            {icon}
+            <span>{label}</span>
           </Link>
         ))}
-        {/* <Link href="/cab">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-5">
-            Book a Ride
+
+        <Link href="/cab">
+          <Button
+            variant="ghost"
+            className="bg-blue-500 hover:bg-blue-600 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300"
+          >
+            Book Now
           </Button>
-        </Link> */}
+        </Link>
       </div>
 
       {/* Mobile Menu */}
@@ -69,31 +77,24 @@ const Navbar = () => {
             <SheetHeader>
               <SheetTitle className="text-white text-2xl">Menu</SheetTitle>
             </SheetHeader>
-            <ul className="flex flex-col gap-5 mt-6 text-lg">
-              {[
-                ["Home", "/"],
-                ["Cab", "/cab"],
-                ["Tours", "/tours"],
-                ["Contact", "/contact"],
-                ["About", "/about"],
-                ["Login", "/profile"],
-              ].map(([label, href]) => (
+            <ul className="flex flex-col gap-5 pl-6 mt-6 text-lg">
+              {navLinks.map(({ label, href, icon }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className="hover:text-yellow-400 transition duration-300"
+                    className="flex items-center gap-3 hover:text-yellow-400 transition duration-300"
                   >
-                    {label}
+                    {icon}
+                    <span>{label}</span>
                   </Link>
                 </li>
               ))}
-              {/* <li>
-                <Link href="/cab">
-                  <Button className="w-full mt-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-full">
-                    Book a Ride
-                  </Button>
-                </Link>
-              </li> */}
+
+              <Link href="/cab">
+                <Button className="bg-blue-500 hover:bg-blue-600 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300">
+                  Book Now
+                </Button>
+              </Link>
             </ul>
           </SheetContent>
         </Sheet>

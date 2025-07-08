@@ -1,12 +1,9 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-
 import { Label } from "@/components/ui/label";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { ArrowDownUp, CarTaxiFront } from "lucide-react";
-import Link from "next/link";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 const tripOptions = [
   { id: "oneway", label: "One-way", title: "Book One Way Cab" },
@@ -17,7 +14,6 @@ const tripOptions = [
 
 export default function CabBookingForm() {
   const [selectedOption, setSelectedOption] = useState("oneway");
-
   const [currentStep, setCurrentStep] = useState(0);
   const lastStep = 3;
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,62 +31,30 @@ export default function CabBookingForm() {
     currentCity: "",
   });
 
-  const handleNext = () => {
-    console.log("Next clicked");
-    console.log("Booking Details:", bookingDetails);
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
-
-  const handlePrevious = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
-  };
-
+  const handleNext = () => setCurrentStep((prev) => prev + 1);
+  const handlePrevious = () => setCurrentStep((prev) => prev - 1);
   const handleTourTypeChange = (value) => {
     setSelectedOption(value);
-    // console.log(e);
     setCurrentStep(1);
   };
-
   const handleTourInfoChange = (e) => {
     const { name, value } = e.target;
-    setBookingDetails((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setBookingDetails((prev) => ({ ...prev, [name]: value }));
   };
   const handleCustomerInfoChange = (e) => {
     const { name, value } = e.target;
-    setCustomerInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setCustomerInfo((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Build the payload to send to the backend
     const payload = {
       tripType: selectedOption,
-      // ...bookingDetails,
-      bookingDetails: {
-        fromLocation: bookingDetails.fromLocation.trim(),
-        toLocation: bookingDetails.toLocation.trim(),
-        pickupDate: bookingDetails.pickupDate,
-        pickupTime: bookingDetails.pickupTime,
-        returnDate: bookingDetails.returnDate,
-        returnTime: bookingDetails.returnTime,
-      },
-      // ...customerInfo,
-      customerInfo: {
-        fullName: customerInfo.fullName.trim(),
-        phone: customerInfo.phone,
-        currentCity: customerInfo.currentCity.trim(),
-      },
+      bookingDetails,
+      customerInfo,
     };
     console.log("Payload:", payload);
     setIsSubmitted(true);
   };
-
   const handleReset = () => {
     setSelectedOption("oneway");
     setCurrentStep(0);
@@ -115,18 +79,21 @@ export default function CabBookingForm() {
   };
 
   return (
-    <section className="flex items-center justify-center px-2 sm:px-4 py-6 sm:py-12 overflow-x-hidden">
-      <div className="mx-auto w-full max-w-3xl rounded-xl bg-gradient-to-t from-blue-300 to-sky-200 p-4 sm:p-8 shadow-md">
-        <h2 className="mb-6 text-2xl font-semibold text-gray-800 text-center flex items-center justify-center gap-2">
-          <CarTaxiFront className="h-6 w-6 text-blue-600" />
+    <section className="w-full px-2 sm:px-4 py-6 sm:py-12 ">
+      <div className="w-full lg:max-w-6xl mx-auto rounded-none sm:rounded-xl  backdrop-blur-md p-6 sm:p-10 shadow-xl border border-white/30">
+        <h2 className="text-3xl font-bold text-white  text-center mb-2 flex justify-center items-center gap-2">
+          <CarTaxiFront className="h-7 w-7 text-blue-600" />
           {getTitle()}
         </h2>
+        <p className="text-center text-white mb-6">
+          Choose your trip type and enter your travel details below.
+        </p>
         <StepIndicator currentStep={currentStep} />
+
         {isSubmitted ? (
           <SuccessMessage onReset={handleReset} />
         ) : (
           <>
-            {/* Render steps based on currentStep */}
             {currentStep === 0 && (
               <StepOne
                 selectedOption={selectedOption}
@@ -137,13 +104,7 @@ export default function CabBookingForm() {
               <StepTwo
                 selectedOption={selectedOption}
                 bookingDetails={bookingDetails}
-                handleTourInfoChange={(e) => {
-                  const { name, value } = e.target;
-                  setBookingDetails((prev) => ({
-                    ...prev,
-                    [name]: value,
-                  }));
-                }}
+                handleTourInfoChange={handleTourInfoChange}
               />
             )}
             {currentStep === 2 && (
@@ -152,21 +113,19 @@ export default function CabBookingForm() {
                 handleCustomerInfoChange={handleCustomerInfoChange}
               />
             )}
-            <div className="mt-8 flex justify-between max-w-md mx-auto">
+            <div className="mt-8 flex justify-between max-w-2xl mx-auto">
               {currentStep > 0 && (
                 <Button
                   variant="ghost"
                   onClick={handlePrevious}
-                  className="text-gray-700 hover:underline hover:bg-transparent"
+                  className="text-white"
                 >
                   ← Back
                 </Button>
               )}
-
               {currentStep < lastStep - 1 && (
                 <Button onClick={handleNext}>Next</Button>
               )}
-
               {currentStep === lastStep - 1 && (
                 <Button type="submit" onClick={handleSubmit}>
                   Submit
@@ -175,410 +134,202 @@ export default function CabBookingForm() {
             </div>
           </>
         )}
-
-        {/*  TODO: On Successfull submit show success message in place of form. */}
       </div>
     </section>
   );
 }
+
 const StepIndicator = ({ currentStep }) => {
   const steps = [
     { id: 1, label: "Trip Type" },
     { id: 2, label: "Travel Details" },
     { id: 3, label: "Contact Info" },
   ];
-
   return (
-    <div className="mb-6 flex items-center justify-center gap-4 text-sm font-medium">
+    <div className="flex items-center justify-center mb-8">
       {steps.map((step, index) => (
-        <div key={step.id} className="flex items-center gap-2">
+        <div key={step.id} className="flex items-center">
           <div
-            className={`h-6 w-6 flex items-center justify-center rounded-full text-xs ${
-              index < currentStep
-                ? "bg-black text-white"
-                : index === currentStep
-                ? "bg-black text-white"
-                : "bg-gray-300 text-gray-600"
+            className={`h-8 w-8 flex items-center justify-center rounded-full font-bold text-sm ${
+              index === currentStep
+                ? "bg-blue-600 text-white"
+                : "bg-gray-300 text-gray-700"
             }`}
           >
             {index < currentStep ? "✓" : step.id}
           </div>
-          <span
-            className={index === currentStep ? "text-black" : "text-gray-500"}
-          >
-            {step.label}
-          </span>
-          {index < steps.length - 1 && <span className="text-gray-400">›</span>}
+          {index < steps.length - 1 && (
+            <div className="w-8 h-1 bg-gray-300 mx-2 rounded-full" />
+          )}
         </div>
       ))}
     </div>
   );
 };
 
-const StepOne = ({ selectedOption, handleTourTypeChange }) => {
-  return (
-    <>
-      <RadioGroup
-        defaultValue="option-one"
-        value={selectedOption}
-        onValueChange={(value) => handleTourTypeChange(value)}
+const StepOne = ({ selectedOption, handleTourTypeChange }) => (
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    {tripOptions.map((option) => (
+      <button
+        key={option.id}
+        type="button"
+        onClick={() => handleTourTypeChange(option.id)}
+        className={`p-4 rounded-lg border transition-all duration-200 ${
+          selectedOption === option.id
+            ? "bg-blue-600 text-white border-blue-700 shadow-md"
+            : "bg-white text-gray-700 border-gray-300 hover:border-blue-500 hover:bg-blue-50"
+        }`}
       >
-        <div className="grid grid-cols-2 gap-4 space-y-2">
-          {tripOptions.map((option) => (
-            <Label
-              key={option.id}
-              htmlFor={option.id}
-              className="space-x-2 border rounded-lg border-black p-4 cursor-pointer flex flex-row items-center hover:border-blue-500"
-            >
-              <RadioGroupItem
-                value={option.id}
-                id={option.id}
-                className="border-black hover:border-blue-500"
-              />
-              <div>
-                <div className="font-semibold">{option.label}</div>
-                <div className="text-sm text-gray-500 hover:border-blue-500">
-                  {option.title}
-                </div>
-              </div>
-            </Label>
-          ))}
-        </div>
-      </RadioGroup>
-    </>
-  );
-};
-const StepTwo = ({ selectedOption, bookingDetails, handleTourInfoChange }) => {
-  const pickupDate = bookingDetails?.pickupDate;
-  return (
-    <>
-      {/* {console.log("Booking Details:", selectedOption)}
-      {selectedOption === "oneway" && <> FROM TO DATE TIME</>}
-      {selectedOption === "roundtrip" && (
-        <> FROM TO PICKUPDATETIME RETURNDATE</>
-      )}
-      {selectedOption === "airport" && <> FROM TO DATE TIME</>}
-      {selectedOption === "rental" && <> FROM DATE TIME</>} */}
-      {/* <form className="space-y-6" onSubmit={(e) => e.preventDefault()}> */}
-      {/* Locations */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-        <div>
-          <Label
-            htmlFor="from"
-            className="text-sm font-medium text-gray-900 mb-1 block"
-          >
-            From
-          </Label>
+        <div className="font-semibold">{option.label}</div>
+        <div className="text-sm">{option.title}</div>
+      </button>
+    ))}
+  </div>
+);
+
+const StepTwo = ({ selectedOption, bookingDetails, handleTourInfoChange }) => (
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="text-white">
+        <Label htmlFor="from">From</Label>
+        <Input
+          id="from"
+          name="fromLocation"
+          placeholder="Pickup location"
+          value={bookingDetails.fromLocation}
+          onChange={handleTourInfoChange}
+          className="capitalize text-black"
+        />
+      </div>
+
+      {selectedOption !== "rental" && (
+        <div className="relative text-white">
+          <Label htmlFor="to">To</Label>
           <Input
-            id="from"
-            type="text"
-            name="fromLocation"
-            placeholder="Enter Pickup location"
-            value={bookingDetails?.fromLocation}
+            id="to"
+            name="toLocation"
+            placeholder="Drop location"
+            value={bookingDetails.toLocation}
             onChange={handleTourInfoChange}
-            className="border-gray-700 capitalize"
-            required
+            className="capitalize text-black"
           />
+          <button
+            type="button"
+            onClick={() => {
+              const from = bookingDetails.fromLocation.trim();
+              const to = bookingDetails.toLocation.trim();
+              if (from && to) {
+                handleTourInfoChange({
+                  target: { name: "fromLocation", value: to },
+                });
+                handleTourInfoChange({
+                  target: { name: "toLocation", value: from },
+                });
+              }
+            }}
+            className="absolute right-3 top-9 bg-gray-200 p-1 rounded hover:bg-gray-300"
+          >
+            <ArrowDownUp />
+          </button>
         </div>
-
-        {selectedOption !== "rental" && (
-          <div className="relative">
-            <Label
-              htmlFor="to"
-              className="text-sm font-medium text-gray-900 mb-1 block"
-            >
-              To
-            </Label>
-            <Input
-              id="to"
-              name="toLocation"
-              type="text"
-              placeholder="Enter Drop location"
-              value={bookingDetails?.toLocation}
-              onChange={handleTourInfoChange}
-              className="border-gray-700 capitalize"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => {
-                const { fromLocation, toLocation } = bookingDetails;
-                const trimmedFrom = fromLocation.trim();
-                const trimmedTo = toLocation.trim();
-                if (trimmedFrom && trimmedTo) {
-                  const swapped = {
-                    ...bookingDetails,
-                    fromLocation: trimmedTo,
-                    toLocation: trimmedFrom,
-                  };
-
-                  handleTourInfoChange({
-                    target: {
-                      name: "fromLocation",
-                      value: swapped.fromLocation,
-                    },
-                  });
-                  handleTourInfoChange({
-                    target: { name: "toLocation", value: swapped.toLocation },
-                  });
-                }
-              }}
-              className="absolute right-2 sm:right-3 top-9 sm:top-10 z-10 cursor-pointer rounded-md bg-gray-200 p-1 text-lg sm:text-xl text-gray-600 hover:bg-gray-300"
-              aria-label="Swap locations"
-            >
-              <ArrowDownUp />
-            </button>
-          </div>
-        )}
-      </div>
-      {/* Dates & Times */}
-      {selectedOption !== "rental" ? (
-        <>
-          {selectedOption === "roundtrip" ? (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <Label
-                    htmlFor="pickupDate"
-                    className="text-sm font-medium text-gray-900 mb-1 block"
-                  >
-                    Pickup Date
-                  </Label>
-                  <Input
-                    id="pickupDate"
-                    type="date"
-                    name="pickupDate"
-                    value={bookingDetails?.pickupDate}
-                    onChange={handleTourInfoChange}
-                    className="border-gray-700"
-                    min={new Date().toISOString().split("T")[0]}
-                    required
-                  />
-                </div>
-                <div>
-                  <Label
-                    htmlFor="pickupTime"
-                    className="text-sm font-medium text-gray-900 mb-1 block"
-                  >
-                    Pickup Time
-                  </Label>
-                  <Input
-                    id="pickupTime"
-                    type="time"
-                    name="pickupTime"
-                    value={bookingDetails?.pickupTime}
-                    onChange={handleTourInfoChange}
-                    className="border-gray-700"
-                    // min={new Date().toLocaleTimeString().substring(0, 5)}
-                    min={
-                      pickupDate === new Date().toISOString().split("T")[0]
-                        ? new Date().toTimeString().slice(0, 5)
-                        : undefined
-                    }
-                    required
-                  />
-                  {/* {new Date().toLocaleTimeString().substring(0, 5)} */}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-1">
-                <div>
-                  <Label
-                    htmlFor="returnDate"
-                    className="text-sm font-medium text-gray-900 mb-1 block"
-                  >
-                    Return Date
-                  </Label>
-                  <Input
-                    id="returnDate"
-                    type="date"
-                    name="returnDate"
-                    value={bookingDetails?.returnDate}
-                    onChange={handleTourInfoChange}
-                    className="border-gray-700"
-                    min={
-                      new Date(pickupDate || new Date())
-                        ?.toISOString()
-                        .split("T")[0]
-                    }
-                    required
-                  />
-                </div>
-                <div>
-                  <Label
-                    htmlFor="returnTime"
-                    className="text-sm font-medium text-gray-900 mb-1 block"
-                  >
-                    Return Time
-                  </Label>
-                  <Input
-                    id="returnTime"
-                    type="time"
-                    name="returnTime"
-                    value={bookingDetails?.returnTime}
-                    onChange={handleTourInfoChange}
-                    className="border-gray-700"
-                    required
-                  />
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <Label
-                  htmlFor="pickupDate"
-                  className="text-sm font-medium text-gray-900 mb-1 block"
-                >
-                  Pickup Date
-                </Label>
-                <Input
-                  id="pickupDate"
-                  type="date"
-                  name="pickupDate"
-                  value={bookingDetails?.pickupDate}
-                  onChange={handleTourInfoChange}
-                  className="border-gray-700"
-                  required
-                />
-              </div>
-              <div>
-                <Label
-                  htmlFor="pickupTime"
-                  className="text-sm font-medium text-gray-900 mb-1 block"
-                >
-                  Pickup Time
-                </Label>
-                <Input
-                  id="pickupTime"
-                  type="time"
-                  name="pickupTime"
-                  value={bookingDetails?.pickupTime}
-                  onChange={handleTourInfoChange}
-                  className="border-gray-700"
-                  required
-                />
-              </div>
-            </div>
-          )}
-        </>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            <div>
-              <Label
-                htmlFor="rentalPickupDate"
-                className="text-sm font-medium text-gray-900 mb-1 block"
-              >
-                Pickup Date
-              </Label>
-              <Input
-                id="rentalPickupDate"
-                type="date"
-                name="rentalPickupDate"
-                className="border-gray-700"
-                required
-              />
-            </div>
-            <div>
-              <Label
-                htmlFor="rentalPickupTime"
-                className="text-sm font-medium text-gray-900 mb-1 block"
-              >
-                Pickup Time
-              </Label>
-              <Input
-                id="rentalPickupTime"
-                type="time"
-                name="rentalPickupTime"
-                className="border-gray-700"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mt-2 flex flex-wrap gap-2 overflow-x-auto">
-            {[
-              "1 hr (10 km)",
-              "2 hr (20 km)",
-              "3 hr (30 km)",
-              "4 hr (40 km)",
-            ].map((slot, idx) => (
-              <Button
-                key={idx}
-                className="whitespace-nowrap rounded-full border border-blue-600 px-3 py-1 text-sm text-blue-600"
-                type="button"
-              >
-                {slot}
-              </Button>
-            ))}
-          </div>
-        </>
       )}
-      {/* </form> */}
-    </>
-  );
-};
-const StepThree = ({ customerInfo, handleCustomerInfoChange }) => {
-  return (
-    <div className="space-y-6">
-      <div>
-        <Label htmlFor="fullName">Full Name</Label>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="text-white">
+        <Label htmlFor="pickupDate">Pickup Date</Label>
         <Input
-          id="fullName"
-          name="fullName"
-          type="text"
-          placeholder="Enter full name"
-          value={customerInfo.fullName}
-          onChange={handleCustomerInfoChange}
-          className="border-gray-700"
-          required
+          id="pickupDate"
+          type="date"
+          name="pickupDate"
+          value={bookingDetails.pickupDate}
+          onChange={handleTourInfoChange}
         />
       </div>
-
-      <div>
-        <Label htmlFor="phone">Phone</Label>
+      <div className="text-white">
+        <Label htmlFor="pickupTime">Pickup Time</Label>
         <Input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="Enter phone number"
-          value={customerInfo.phone}
-          onChange={handleCustomerInfoChange}
-          className="border-gray-700"
-          required
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="currentCity">Current City</Label>
-        <Input
-          id="currentCity"
-          name="currentCity"
-          type="text"
-          placeholder="Enter your city"
-          value={customerInfo.currentCity}
-          onChange={handleCustomerInfoChange}
-          className="border-gray-700"
-          required
+          id="pickupTime"
+          type="time"
+          name="pickupTime"
+          value={bookingDetails.pickupTime}
+          onChange={handleTourInfoChange}
         />
       </div>
     </div>
-  );
-};
+
+    {selectedOption === "roundtrip" && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="text-white">
+          <Label htmlFor="returnDate">Return Date</Label>
+          <Input
+            id="returnDate"
+            type="date"
+            name="returnDate"
+            value={bookingDetails.returnDate}
+            onChange={handleTourInfoChange}
+          />
+        </div>
+        <div className="text-white">
+          <Label htmlFor="returnTime">Return Time</Label>
+          <Input
+            id="returnTime"
+            type="time"
+            name="returnTime"
+            value={bookingDetails.returnTime}
+            onChange={handleTourInfoChange}
+          />
+        </div>
+      </div>
+    )}
+  </div>
+);
+
+const StepThree = ({ customerInfo, handleCustomerInfoChange }) => (
+  <div className="space-y-6">
+    <div className="text-white">
+      <Label htmlFor="fullName">Full Name</Label>
+      <Input
+        id="fullName"
+        name="fullName"
+        type="text"
+        value={customerInfo.fullName}
+        onChange={handleCustomerInfoChange}
+        className="capitalize "
+      />
+    </div>
+    <div className="text-white">
+      <Label htmlFor="phone">Phone</Label>
+      <Input
+        id="phone"
+        name="phone"
+        type="tel"
+        value={customerInfo.phone}
+        onChange={handleCustomerInfoChange}
+      />
+    </div>
+    <div className="text-white">
+      <Label htmlFor="currentCity">Current City</Label>
+      <Input
+        id="currentCity"
+        name="currentCity"
+        type="text"
+        value={customerInfo.currentCity}
+        onChange={handleCustomerInfoChange}
+        className="capitalize "
+      />
+    </div>
+  </div>
+);
+
 const SuccessMessage = ({ onReset }) => (
-  <div className="text-center py-12 px-4">
-    <h2 className="text-3xl font-bold text-green-700 mb-4">
-      🎉 Booking Confirmed!
-    </h2>
-    <p className="text-gray-700 text-lg">
-      Thank you for choosing our cab service.
-    </p>
-    <p className="text-gray-600 mt-2">
-      We&apos;ll contact you shortly with further details.
+  <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center shadow mt-10">
+    <h2 className="text-3xl font-bold text-green-700">🎉 Booking Confirmed!</h2>
+    <p className="text-gray-700 mt-2">
+      Thank you for choosing our cab service. We'll contact you shortly.
     </p>
     <Button
-      className="mt-6 bg-black text-white hover:bg-gray-800"
+      className="mt-6 bg-blue-600 hover:bg-blue-700 text-white"
       onClick={onReset}
     >
       Book Another Cab
