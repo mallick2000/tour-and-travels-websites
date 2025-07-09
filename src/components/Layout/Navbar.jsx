@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Home, Car, Map, User, FerrisWheel } from "lucide-react";
+import { Menu, Home, Car, Map, User, FerrisWheel, Headset } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -58,9 +58,10 @@ const Navbar = () => {
         <Link href="/cab">
           <Button
             variant="ghost"
-            className="bg-blue-500 hover:bg-blue-600 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300"
+            className="bg-blue-500 hover:bg-blue-500 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300"
           >
-            Book Now
+            <Headset />
+            06743525280
           </Button>
         </Link>
       </div>
@@ -91,8 +92,8 @@ const Navbar = () => {
               ))}
 
               <Link href="/cab">
-                <Button className="bg-blue-500 hover:bg-blue-600 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300">
-                  Book Now
+                <Button className="bg-blue-500 hover:bg-blue-500 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300">
+                  06743525280
                 </Button>
               </Link>
             </ul>

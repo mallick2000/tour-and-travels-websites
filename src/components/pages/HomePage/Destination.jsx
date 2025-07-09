@@ -12,10 +12,11 @@ const destinations = [
     image: "/place/Chilika.jpg",
   },
   {
-    title: "DHAULI",
+    title: "Koraput",
     description:
-      "Dhauli, where peace whispers by the Daya’s shore, Ashoka’s sword fell, and hatred rose no more.",
-    image: "/place/dhauli.jpg",
+      "Deomali is a popular tourist destination in Odisha known for its pristine beaches, lush green landscapes, and serene atmosphere.",
+
+    image: "/place/Deomali.jpg",
   },
   {
     title: "BHITARKANIKA",
@@ -24,7 +25,7 @@ const destinations = [
     image: "/place/kdp.jpg",
   },
   {
-    title: "LINGRAJ TEMPLE",
+    title: "Bhubaneswar",
     description:
       "It is renowned for its magnificent Kalinga architecture and spiritual significance.",
     image: "/place/lingraj.jpg",
@@ -62,22 +63,20 @@ export default function Destination() {
           <div
             key={idx}
             className="relative h-80 overflow-hidden rounded-xl group text-white"
-            // onClick={router.push(`/destination/${dest.title}`)}
           >
-            <Link href={`/destination/${dest.title}`}>
+            <Link
+              href={`/destination/${dest.title}`}
+              className="relative block h-80 overflow-hidden rounded-xl group text-white"
+            >
               <Image
                 src={dest.image}
                 alt={dest.title}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               />
-
-              <Link
-                href={`/destination/${dest.title}`}
-                className="absolute right-4 group-hover:bg-blue-500 transition duration-300  group-hover:text-white ease-in top-4 rounded-full bg-white/80 p-2 z-50 text-black backdrop-blur-sm"
-              >
+              <div className="absolute right-4 top-4 rounded-full bg-white/80 p-2 text-black backdrop-blur-sm group-hover:bg-blue-500 group-hover:text-white transition duration-300 ease-in z-50">
                 <ArrowUpRight size={18} />
-              </Link>
+              </div>
               <div className="absolute inset-0 group-hover:from-black group-hover:to-black/10 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 z-10">
                 <h2 className="mb-2 text-xl font-semibold">{dest.title}</h2>

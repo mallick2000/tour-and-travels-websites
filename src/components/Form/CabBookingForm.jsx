@@ -80,7 +80,7 @@ export default function CabBookingForm() {
 
   return (
     <section className="w-full px-2 sm:px-4 py-6 sm:py-12 ">
-      <div className="w-full lg:max-w-6xl mx-auto rounded-none sm:rounded-xl  backdrop-blur-md p-6 sm:p-10 shadow-xl border border-white/30">
+      <div className="w-full lg:max-w-6xl mx-auto rounded-none sm:rounded-xl  backdrop-blur-xs p-6 sm:p-10 shadow-xl border border-white/30">
         <h2 className="text-3xl font-bold text-white  text-center mb-2 flex justify-center items-center gap-2">
           <CarTaxiFront className="h-7 w-7 text-blue-600" />
           {getTitle()}
@@ -198,7 +198,7 @@ const StepTwo = ({ selectedOption, bookingDetails, handleTourInfoChange }) => (
           placeholder="Pickup location"
           value={bookingDetails.fromLocation}
           onChange={handleTourInfoChange}
-          className="capitalize text-black"
+          className="capitalize text-white"
         />
       </div>
 
@@ -211,7 +211,7 @@ const StepTwo = ({ selectedOption, bookingDetails, handleTourInfoChange }) => (
             placeholder="Drop location"
             value={bookingDetails.toLocation}
             onChange={handleTourInfoChange}
-            className="capitalize text-black"
+            className="capitalize text-white"
           />
           <button
             type="button"
@@ -268,6 +268,7 @@ const StepTwo = ({ selectedOption, bookingDetails, handleTourInfoChange }) => (
             name="returnDate"
             value={bookingDetails.returnDate}
             onChange={handleTourInfoChange}
+            min={bookingDetails.pickupDate}
           />
         </div>
         <div className="text-white">

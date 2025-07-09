@@ -1,90 +1,81 @@
 "use client";
-import * as React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-
-import Autoplay from "embla-carousel-autoplay";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const PackageData = [
-  {
-    title: "",
-    image: "/place/Deomali.jpg",
-    location: "Koraput",
-  },
-  {
-    title: "",
-    image: "/place/tiger.jpg",
-    location: "Mayurbhanj",
-  },
-  {
-    title: "",
-    image: "/place/tarini.jpg",
-    location: "Keonjhar",
-  },
-  {
-    title: "",
-    image: "/place/daringbadi.jpg",
-    location: "Daringbadi",
-  },
-  {
-    title: "",
-    image: "/place/puri.jpg",
-    location: "Puri",
-  },
-  {
-    title: "",
-    image: "/place/emami.jpg",
-    location: "Baleswar",
-  },
+  { image: "/place/Deomali.jpg", location: "Koraput" },
+  { image: "/place/tiger.jpg", location: "Mayurbhanj" },
+  { image: "/place/tarini.jpg", location: "Keonjhar" },
+  { image: "/place/daringbadi.jpg", location: "Daringbadi" },
+  { image: "/place/puri.jpg", location: "Puri" },
+  { image: "/place/emami.jpg", location: "Baleswar" },
+  { image: "/place/dhauli.jpg", location: "Dhauli" },
 ];
 
+const ITEMS_PER_PAGE = 4;
+
 export default function Packages() {
+  const [startIndex, setStartIndex] = useState(0);
+
+  const handleNext = () => {
+    if (startIndex + ITEMS_PER_PAGE < PackageData.length) {
+      setStartIndex((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (startIndex > 0) {
+      setStartIndex((prev) => prev - 1);
+    }
+  };
+
+  const visibleItems = PackageData.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
+
   return (
     <main className="px-4 py-8 md:px-16 lg:px-20 bg-gray-50">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">
         Trails from the Temple City:-
       </h1>
 
-      <Carousel
-        className="mx-auto w-full "
-        plugins={[
-          Autoplay({
-            delay: 4000,
-          }),
-        ]}
-      >
-        <CarouselContent className="-ml-4">
-          {PackageData.map((data, index) => (
-            <CarouselItem
-              key={index}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/5"
-            >
-              <Card className="relative h-96 w-full rounded-xl group overflow-hidden ">
-                <Image
-                  src={data.image}
-                  alt={data.title || "Package image"}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                />
-                <div className="absolute bottom-0 left-0 w-full bg-gray-100 bg-opacity-40 text-black p-4">
-                  <h2 className="text-lg font-semibold">
-                    {data.location || "Location"}
-                  </h2>
-                </div>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {visibleItems.map((item, index) => (
+          <div
+            key={index}
+            className="relative h-60 w-full rounded-xl overflow-hidden shadow-md group"
+          >
+            <Image
+              src={item.image}
+              alt={item.location}
+              fill
+              className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 text-white p-2 text-center">
+              <h2 className="text-sm font-medium">{item.location}</h2>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-end  gap-4 items-center mt-4">
+        <Button
+          onClick={handlePrev}
+          disabled={startIndex === 0}
+          className="p-2  bg-blue-500 text-white rounded-full disabled:opacity-50"
+        >
+          <ArrowLeft />
+        </Button>
+        <Button
+          onClick={handleNext}
+          disabled={startIndex + ITEMS_PER_PAGE >= PackageData.length}
+          className="p-2 rounded-full bg-blue-500 text-white disabled:opacity-50"
+        >
+          <ArrowRight />
+        </Button>
+      </div>
     </main>
   );
 }

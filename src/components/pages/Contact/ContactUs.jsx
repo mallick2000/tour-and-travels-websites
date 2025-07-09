@@ -1,125 +1,114 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Globe, Mails, MapPin, Smartphone } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
-import { Mail, Phone, User } from "lucide-react";
-import Image from "next/image";
 
 const ContactUs = () => {
   return (
-    <div className=" bg-gradient-to-r from-sky-200 to-blue-200 flex items-center justify-center px-4 py-16">
-      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-lg overflow-hidden grid md:grid-cols-2">
-        {/* Image Section */}
-        <div className="  items-center justify-center shadow-xl bg-gradient-to-r from-sky-300 to-blue-400">
-          <Image
-            src="/contact.png"
-            alt="Contact "
-            width={400}
-            height={400}
-            className="object-cover rounded-full"
-          />
-          <p className="w-full px-6 text-md font-light text-slate-900">
-            We are here to help! Whether you are looking to book a cab, inquire
-            about our services, or share feedback, our team is just a message or
-            call away. Available 24/7, we are committed to making your travel
-            smooth, safe, and hassle-free. Don&apos;t hesitate to reach out — we
-            had love to hear from you...!
+    <div className="min-h-screen bg-blue-100 p-6 md:p-12">
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2  bg-sky-200 p-6 rounded-md">
+        {/* Left Side - Contact Form */}
+        <div className="bg-white p-8 shadow rounded-lg">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+            Get in Touch
+          </h2>
+          <form className="space-y-5">
+            <Input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-3 border border-gray-300 rounded"
+            />
+            <Input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-3 border border-gray-300 rounded"
+            />
+            <Textarea
+              placeholder="Your Message"
+              rows="5"
+              className="w-full p-3 border border-gray-300 rounded"
+            ></Textarea>
+            <Button
+              type="submit"
+              className="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700"
+            >
+              Send Message
+            </Button>
+          </form>
+          <p className="mt-6 text-gray-600 font-light w-full">
+            Have questions or need help? Reach out to us anytime—we’re here to
+            assist you!
           </p>
         </div>
 
-        {/* Form Section */}
-        <div className="p-8 md:p-12">
-          <h2 className="text-3xl font-extrabold text-gray-800 mb-2 text-center md:text-left">
-            Get in Touch
-          </h2>
-          <p className="text-sm text-gray-500 mb-8 text-center md:text-left">
-            We’d love to hear from you. Please fill out the form.
-          </p>
+        {/* Right Side - Info */}
+        <div className="space-y-6 text-gray-800">
+          <div>
+            <h3 className="text-xl font-semibold flex gap-2">
+              <MapPin /> Location
+            </h3>
+            <p>
+              First Floor, Plot, 834/2820, Road No. 14, Jagannath Nagar
+              <br />
+              Rasulgarh, Bhubaneswar, Odisha 751025
+            </p>
+          </div>
 
-          <form className="space-y-6">
-            {/* Name */}
-            <div className="relative">
-              <Label htmlFor="name" className="sr-only">
-                Full Name
-              </Label>
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <User className="w-5 h-5 text-gray-400" />
-              </div>
-              <Input
-                type="text"
-                id="name"
-                placeholder="Full Name"
-                required
-                className="pl-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"
-              />
+          <div>
+            <h3 className="text-xl font-semibold flex gap-2 ">
+              <Smartphone /> Mobile
+            </h3>
+            <p>+91-06743525280</p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold flex gap-2">
+              <Mails /> Emails
+            </h3>
+            <ul className="space-y-1">
+              <li>
+                <strong>General:</strong> contact@example.com
+              </li>
+              <li>
+                <strong>Support:</strong> support@example.com
+              </li>
+              <li>
+                <strong>Partnership:</strong> partners@example.com
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold flex gap-2">
+              <Globe /> Social Profiles
+            </h3>
+            <div className="flex space-x-4 mt-2">
+              <Link href="#" className="text-blue-600 hover:underline">
+                Twitter
+              </Link>
+              <Link href="#" className="text-blue-800 hover:underline">
+                LinkedIn
+              </Link>
+              <Link href="#" className="text-pink-500 hover:underline">
+                Instagram
+              </Link>
             </div>
+          </div>
 
-            {/* Email */}
-            <div className="relative">
-              <Label htmlFor="email" className="sr-only">
-                Email
-              </Label>
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Mail className="w-5 h-5 text-gray-400" />
-              </div>
-              <Input
-                type="email"
-                id="email"
-                placeholder="Email Address"
-                required
-                className="pl-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="relative">
-              <Label htmlFor="phone" className="sr-only">
-                Phone
-              </Label>
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Phone className="w-5 h-5 text-gray-400" />
-              </div>
-              <Input
-                type="tel"
-                id="phone"
-                placeholder="Phone Number"
-                required
-                className="pl-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
-            {/* Message */}
-            <div>
-              <Label htmlFor="message" className="sr-only">
-                Message
-              </Label>
-              <textarea
-                id="message"
-                placeholder="Your Message"
-                rows={4}
-                required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition duration-200"
-            >
-              Send Message
-            </button>
-          </form>
-
-          {/* Contact Info */}
-          <div className="mt-8 text-center text-sm text-gray-600 space-y-2">
-            <p>Or contact us directly:</p>
-            <div className="flex justify-center items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>+91-9348628756</span>
-            </div>
-            <div className="flex justify-center items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span>support@quickcab.com</span>
+          <div>
+            <h3 className="text-xl font-semibold">🏷️ Hashtags</h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <span className="bg-gray-200 text-sm px-3 py-1 rounded">
+                #ContactUs
+              </span>
+              <span className="bg-gray-200 text-sm px-3 py-1 rounded">
+                #Support
+              </span>
+              <span className="bg-gray-200 text-sm px-3 py-1 rounded">
+                #Partnership
+              </span>
             </div>
           </div>
         </div>
