@@ -1,5 +1,5 @@
 import AboutUs from "@/components/pages/HomePage/AboutUs";
-import { Annoucement } from "@/components/pages/HomePage/Annoucement";
+import Annoucement from "@/components/pages/HomePage/Annoucement";
 import TopDestinations from "@/components/pages/HomePage/AttractionHome";
 import BannerSection from "@/components/pages/HomePage/BannerSection";
 import CardCab from "@/components/pages/HomePage/CardCab";
@@ -16,7 +16,7 @@ export default function Home() {
       {/* <Cabspecs /> */}
 
       <TopDestinations />
-      {/* <Annoucement /> */}
+      <Annoucement />
       <CardCab />
       <Destination />
       <Packages />

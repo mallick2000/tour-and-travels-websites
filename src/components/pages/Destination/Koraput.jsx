@@ -116,11 +116,11 @@ export default function Koraput() {
             className="rounded-2xl md:h-[305px]"
           />
           <Image
-            src="/koraput/img6.jpg"
+            src="/koraput/img7.jpg"
             alt="Tribal village landscape"
             width={900}
             height={900}
-            className="rounded-2xl"
+            className="rounded-2xl md:h-[305px]"
           />
         </div>
 

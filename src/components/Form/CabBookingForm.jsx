@@ -80,7 +80,7 @@ export default function CabBookingForm() {
 
   return (
     <section className="w-full px-2 sm:px-4 py-6 sm:py-12 ">
-      <div className="w-full lg:max-w-6xl mx-auto rounded-none sm:rounded-xl  backdrop-blur-xs p-6 sm:p-10 shadow-xl border border-white/30">
+      <div className="w-full lg:max-w-6xl mx-auto rounded-none sm:rounded-xl bg-white/10  backdrop-blur-xs p-6 sm:p-10 shadow-xl ">
         <h2 className="text-3xl font-bold text-white  text-center mb-2 flex justify-center items-center gap-2">
           <CarTaxiFront className="h-7 w-7 text-blue-600" />
           {getTitle()}

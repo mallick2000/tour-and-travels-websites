@@ -1,99 +1,69 @@
-"use client";
+import React from "react";
+import { Tag, BadgePercent, PlaneTakeoff, Gift } from "lucide-react";
 
-import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
-
-import { Card } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Image from "next/image";
-
-export function Annoucement() {
-  const destinations = [
+const Annoucement = () => {
+  const offers = [
     {
-      image: "/place/konark.jpg",
-      title: "Konark Sun Temple",
-      description:
-        "Marvel at the 13th-century UNESCO World Heritage site famous for its intricate stone carvings.",
-      offer: "20% off entrance fee",
+      title: "20% OFF on Outstation Cabs",
+      description: "Enjoy flat 20% discount on round-trip bookings this July!",
+      image: "/koraput/img2.jpg",
+      icon: <BadgePercent className="w-6 h-6 text-red-500" />,
     },
     {
-      image: "/place/puri.jpg",
-      title: "Puri Jagannath Temple",
-      description:
-        "Visit the iconic pilgrimage spot known for its annual Rath Yatra festival and spiritual vibes.",
-      offer: "Free guided tour",
+      title: "Flat ₹150 OFF on First Ride",
+      description: "Get a flat discount of ₹150 on your first ride.",
+      image: "/offer/img2.jpg",
+      icon: <Gift className="w-6 h-6 text-green-600" />,
     },
     {
-      image: "/place/chilika.jpg",
-      title: "Chilika Lake",
-      description:
-        "Explore Asia’s largest brackish water lagoon, a paradise for birdwatchers and nature lovers.",
-      offer: "Boat ride discount",
+      title: "Airport Drop @ ₹499",
+      description: "Get airport drop at a flat rate of ₹499.",
+      image: "/offer/img3.jpg",
+      icon: <PlaneTakeoff className="w-6 h-6 text-blue-500" />,
     },
     {
-      image: "/place/dhauli.jpg",
-      title: "Dhauli Peace Pagoda",
-      description:
-        "Discover the historic site of the Kalinga War and enjoy the tranquil white peace pagoda.",
-      offer: "Complimentary meditation session",
-    },
-    {
-      image: "/place/lingraj.jpg",
-      title: "Lingaraja Temple",
-      description:
-        "Admire one of the oldest temples in Bhubaneswar, dedicated to Lord Shiva with stunning architecture.",
-      offer: "Special evening aarti",
+      title: "Weekend Special",
+      description: "Get extra ₹200 OFF on weekend outstation trips.",
+      image: "/images/weekend.jpg",
+      icon: <Tag className="w-6 h-6 text-purple-600" />,
     },
   ];
 
-  const autoplay = React.useMemo(
-    () => Autoplay({ delay: 3000, stopOnInteraction: true }),
-    []
-  );
-
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      {/* Header with sections */}
+    <section className="bg-gray-100 py-8 h-[500px]">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          🔥 Exclusive Travel Offers
+        </h2>
 
-      <Carousel
-        plugins={[autoplay]}
-        className="w-full"
-        onMouseEnter={() => autoplay.stop()}
-        onMouseLeave={() => autoplay.reset()}
-      >
-        <CarouselContent>
-          {destinations.map(({ image, title, description, offer }, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1">
-                <Card className="relative h-[500px] overflow-hidden rounded-md group">
-                  <Image
-                    src={image}
-                    alt={title}
-                    height={500}
-                    width={900}
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center p-6 text-center text-white">
-                    <h3 className="text-2xl font-bold mb-1">{title}</h3>
-                    <p className="text-base mb-2">{description}</p>
-                    <p className="text-yellow-300 font-semibold italic">
-                      Special Offer: {offer}
-                    </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-[400px] overflow-y-auto pr-2">
+          {offers.map((offer, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 overflow-hidden"
+            >
+              <img
+                src={offer.image}
+                alt={offer.title}
+                className="w-full h-32 object-cover"
+              />
+              <div className="p-4 flex flex-col justify-between h-[calc(100%-128px)]">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    {offer.icon}
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {offer.title}
+                    </h3>
                   </div>
-                </Card>
+                  <p className="text-sm text-gray-600">{offer.description}</p>
+                </div>
               </div>
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default Annoucement;

@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Home, Car, Map, User, FerrisWheel, Headset } from "lucide-react";
+import {
+  Menu,
+  Home,
+  Car,
+  Map,
+  User,
+  FerrisWheel,
+  Headset,
+  CarTaxiFront,
+} from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -20,9 +29,9 @@ const Navbar = () => {
 
   const navLinks = [
     { href: "/", icon: <Home className="w-5 h-5" /> },
-    { href: "/cab", icon: <Car className="w-5 h-5" /> },
+    { href: "/cab", icon: <CarTaxiFront className="w-5 h-5" /> },
     {
-      href: "/tours",
+      href: "/package",
       icon: <FerrisWheel className="w-5 h-5" />,
     },
     { href: "/profile", icon: <User className="w-5 h-5" /> },

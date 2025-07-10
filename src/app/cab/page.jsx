@@ -4,6 +4,7 @@ import RecentSearches from "@/components/pages/CabPage/RecentSearch";
 import TaxiService from "@/components/pages/CabPage/Sevice";
 import CardCab from "@/components/pages/HomePage/CardCab";
 import OurServices from "@/components/pages/HomePage/OurServices";
+import Testimonials from "@/components/pages/HomePage/Testimonials";
 
 import React from "react";
 
@@ -16,6 +17,7 @@ const page = () => {
       <Spacing />
       <TaxiService />
       <OurServices />
+      <Testimonials />
     </>
   );
 };
