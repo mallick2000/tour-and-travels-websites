@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import React from "react";
 
 const CabTravelBanner = () => {
@@ -20,9 +22,38 @@ const CabTravelBanner = () => {
           Your journey starts here — fast, affordable, and always on time. Book
           our premium cab packages for city rides and airport transfers.
         </p>
-        <button className="mt-8 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
-          Book a Ride Now
-        </button>
+
+        {/* Booking Form */}
+        <form className="mt-10 space-y-6 md:space-y-0 md:flex md:items-center md:justify-center md:space-x-4">
+          <div className="w-full md:w-1/3">
+            <label htmlFor="destination" className="sr-only">
+              Destination
+            </label>
+            <Input
+              id="destination"
+              name="destination"
+              type="text"
+              placeholder="Enter your destination"
+            />
+          </div>
+
+          <div className="w-full md:w-1/4">
+            <label htmlFor="date" className="sr-only">
+              Date
+            </label>
+            <Input id="date" name="date" type="date" />
+          </div>
+
+          <div className="w-full md:w-auto">
+            <Button
+              type="submit"
+              variant="gradient"
+              className="w-full md:w-auto"
+            >
+              Search Ride
+            </Button>
+          </div>
+        </form>
       </div>
     </section>
   );

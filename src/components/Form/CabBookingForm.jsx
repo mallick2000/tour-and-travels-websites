@@ -88,7 +88,7 @@ export default function CabBookingForm() {
         <p className="text-center text-white mb-6">
           Choose your trip type and enter your travel details below.
         </p>
-        <StepIndicator currentStep={currentStep} />
+        {/* <StepIndicator currentStep={currentStep} /> */}
 
         {isSubmitted ? (
           <SuccessMessage onReset={handleReset} />
@@ -139,33 +139,33 @@ export default function CabBookingForm() {
   );
 }
 
-const StepIndicator = ({ currentStep }) => {
-  const steps = [
-    { id: 1, label: "Trip Type" },
-    { id: 2, label: "Travel Details" },
-    { id: 3, label: "Contact Info" },
-  ];
-  return (
-    <div className="flex items-center justify-center mb-8">
-      {steps.map((step, index) => (
-        <div key={step.id} className="flex items-center">
-          <div
-            className={`h-8 w-8 flex items-center justify-center rounded-full font-bold text-sm ${
-              index === currentStep
-                ? "bg-blue-600 text-white"
-                : "bg-gray-300 text-gray-700"
-            }`}
-          >
-            {index < currentStep ? "✓" : step.id}
-          </div>
-          {index < steps.length - 1 && (
-            <div className="w-8 h-1 bg-gray-300 mx-2 rounded-full" />
-          )}
-        </div>
-      ))}
-    </div>
-  );
-};
+// const StepIndicator = ({ currentStep }) => {
+//   const steps = [
+//     { id: 1, label: "Trip Type" },
+//     { id: 2, label: "Travel Details" },
+//     { id: 3, label: "Contact Info" },
+//   ];
+//   return (
+//     <div className="flex items-center justify-center mb-8">
+//       {steps.map((step, index) => (
+//         <div key={step.id} className="flex items-center">
+//           <div
+//             className={`h-8 w-8 flex items-center justify-center rounded-full font-bold text-sm ${
+//               index === currentStep
+//                 ? "bg-blue-600 text-white"
+//                 : "bg-gray-300 text-gray-700"
+//             }`}
+//           >
+//             {index < currentStep ? "✓" : step.id}
+//           </div>
+//           {index < steps.length - 1 && (
+//             <div className="w-8 h-1 bg-gray-300 mx-2 rounded-full" />
+//           )}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
 
 const StepOne = ({ selectedOption, handleTourTypeChange }) => (
   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

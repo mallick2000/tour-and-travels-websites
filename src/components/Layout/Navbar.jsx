@@ -65,10 +65,7 @@ const Navbar = () => {
         ))}
 
         <Link href="/cab">
-          <Button
-            variant="ghost"
-            className="bg-blue-500 hover:bg-blue-500 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300"
-          >
+          <Button variant="gradient">
             <Headset />
             06743525280
           </Button>

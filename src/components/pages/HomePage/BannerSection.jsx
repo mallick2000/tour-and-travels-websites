@@ -32,8 +32,8 @@ const BannerSection = () => {
 
           {/* Booking Form Card */}
           <div className="">
-            <CabBookingForm />
-            {/* <OdishaCabBookingForm /> */}
+            {/* <CabBookingForm /> */}
+            <OdishaCabBookingForm />
           </div>
         </div>
       </div>
