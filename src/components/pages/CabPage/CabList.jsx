@@ -95,9 +95,11 @@ export default function CabList() {
   });
 
   return (
-    <div className="flex flex-col md:flex-row px-20">
-      {/* Sidebar */}
-      <FilterSidebar onFilterChange={setFilters} />
+    <div className="flex flex-col md:flex-row px-4 md:px-20 py-10 gap-6">
+      {/* Sticky Sidebar */}
+      <div className="w-full md:w-64 md:sticky top-20 self-start z-10">
+        <FilterSidebar onFilterChange={setFilters} />
+      </div>
 
       {/* Cab List */}
       <div className="flex-1 bg-white p-6 md:px-10 xl:px-20 space-y-10">
@@ -181,7 +183,7 @@ export default function CabList() {
 
         {filteredPackages.length === 0 && (
           <p className="text-gray-500 text-center">
-            No cabs match your filters.
+            No Vehicles match your filters.
           </p>
         )}
       </div>

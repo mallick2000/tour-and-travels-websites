@@ -17,11 +17,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 
 export default function CabBookingCheckout() {
-  const [selectedPayment, setSelectedPayment] = useState("full");
+  const [selectedPayment, setSelectedPayment] = useState("part");
   const [showFareBreakup, setShowFareBreakup] = useState(true);
 
   const partPayAmount = 500;
   const fullPayAmount = 930;
+  const payAfterDrop = 0;
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-6 md:px-8">
@@ -175,6 +176,22 @@ export default function CabBookingCheckout() {
             </div>
 
             <div className="space-y-3">
+              <Label className="flex items-center justify-between gap-2 text-sm font-medium">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="payafterdrop"
+                    checked={selectedPayment === "payafterdrop"}
+                    onChange={() => setSelectedPayment("payafterdrop")}
+                    className="accent-blue-600"
+                  />
+                  <span>Pay After Drop</span>
+                </div>
+                <span className="text-gray-800 font-semibold">
+                  ₹{payAfterDrop}
+                </span>
+              </Label>
               <Label className="flex items-center justify-between gap-2 text-sm font-medium">
                 <div className="flex items-center gap-2">
                   <input

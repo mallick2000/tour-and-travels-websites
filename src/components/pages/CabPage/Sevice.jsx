@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TaxiService() {
   return (
-    <section className="bg-gray-200 p-6  rounded-xl shadow-lg flex flex-col lg:flex-row gap-6 items-start md:px-12 lg:px-20">
+    <section className="bg-gray-200 p-6 shadow-lg flex flex-col lg:flex-row gap-6 items-start md:px-12 lg:px-32">
       {/* Left Content */}
       <div className="flex-1">
         <h2 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-4">

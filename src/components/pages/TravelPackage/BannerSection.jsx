@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import React from "react";
 
 const CabTravelBanner = () => {
@@ -38,9 +39,9 @@ const CabTravelBanner = () => {
           </div>
 
           <div className="w-full md:w-1/4">
-            <label htmlFor="date" className="sr-only">
+            <Label htmlFor="date" className="sr-only">
               Date
-            </label>
+            </Label>
             <Input id="date" name="date" type="date" />
           </div>
 

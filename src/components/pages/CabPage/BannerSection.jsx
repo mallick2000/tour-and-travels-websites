@@ -8,7 +8,7 @@ function CabBookingSection() {
     <section className="relative w-full md:h-[600px] h-[500px] text-white">
       {/* Background Image */}
       <Image
-        src="/Tour5.jpg"
+        src="/sec5.jpg"
         alt="Tour Background"
         fill
         className="object-cover"

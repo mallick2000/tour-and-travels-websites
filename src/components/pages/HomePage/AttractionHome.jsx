@@ -23,6 +23,28 @@ const destinations = [
     description:
       "The Temple City of India, blending ancient and modern culture.",
   },
+  {
+    name: "Puri, Odisha",
+    image: "./place/puri.jpg",
+    description: "Famous for the Jagannath Temple and golden beaches.",
+  },
+  {
+    name: "Konark, Odisha",
+    image: "./place/konark.jpg",
+    description: "Home to the iconic Sun Temple, a UNESCO World Heritage Site.",
+  },
+  {
+    name: "Chilika Lake, Odisha",
+    image: "./place/chilika.jpg",
+    description:
+      "Asias largest brackish water lagoon, ideal for bird watching and boat rides.",
+  },
+  {
+    name: "Bhubaneswar, Odisha",
+    image: "./place/khandagari.jpg",
+    description:
+      "The Temple City of India, blending ancient and modern culture.",
+  },
 ];
 
 const TopDestinations = () => {

@@ -62,7 +62,7 @@ export default function OdishaCabBookingForm() {
 
   return (
     <section className="w-full px-4 py-48 md:py-20 ">
-      <div className="w-full max-w-6xl mx-auto rounded-lg bg-slate-100 p-4 sm:p-10 shadow-md">
+      <div className="w-full max-w-6xl mx-auto rounded-lg bg-slate-300 p-4 sm:p-10 shadow-md">
         <h2 className="text-3xl font-bold text-center mb-2 flex justify-center items-center gap-2">
           <CarTaxiFront className="h-7 w-7 text-blue-600" />
           {getTitle()}
@@ -138,8 +138,8 @@ const StepOne = ({ selectedOption, handleTourTypeChange }) => (
         variant="gradient"
         className={` ${
           selectedOption === option.id
-            ? ""
-            : "bg-white border text-gray-700 border-gray-300 hover:border-blue-500 hover:bg-blue-50"
+            ? "p-6"
+            : "bg-white border text-gray-700 border-gray-300 hover:border-blue-500 hover:bg-blue-50 p-6"
         }
       
         // }`}
@@ -165,7 +165,7 @@ const StepTwo = ({
   <>
     {/* Desktop Form */}
 
-    <div className="hidden lg:flex flex-wrap gap-4 bg-slate-100  rounded-xl ">
+    <div className="hidden lg:flex flex-wrap gap-4 bg-slate-300  rounded-xl ">
       <div className="flex flex-col space-y-2 ">
         <Label htmlFor="fromLocation">From</Label>
         <Input
@@ -174,7 +174,7 @@ const StepTwo = ({
           placeholder="Enter PickUp Location"
           value={bookingDetails.fromLocation}
           onChange={handleTourInfoChange}
-          className="p-2 border rounded-md w-[180px] md:h-12"
+          className="p-2 capitalize w-[180px] md:h-12 font-bold"
         />
       </div>
 
@@ -196,7 +196,7 @@ const StepTwo = ({
               placeholder="Enter Drop Location"
               value={bookingDetails.toLocation}
               onChange={handleTourInfoChange}
-              className="p-2 border rounded-md w-[180px] md:h-12"
+              className="p-2 capitalize w-[180px] md:h-12 font-bold"
             />
           </div>
         </>
@@ -208,7 +208,7 @@ const StepTwo = ({
           name="pickupDate"
           value={bookingDetails.pickupDate}
           onChange={handleTourInfoChange}
-          className="p-2 border rounded-md w-[160px] md:h-12"
+          className="p-2  w-[160px] md:h-12 "
         />
       </div>
       <div className="flex flex-col space-y-2 ">
@@ -218,7 +218,7 @@ const StepTwo = ({
           name="pickupTime"
           value={bookingDetails.pickupTime}
           onChange={handleTourInfoChange}
-          className="p-2 border rounded-md w-[120px] md:h-12"
+          className="p-2  w-[120px] md:h-12"
         />
       </div>
 
@@ -232,7 +232,7 @@ const StepTwo = ({
               min={bookingDetails.pickupDate}
               value={bookingDetails.returnDate}
               onChange={handleTourInfoChange}
-              className="p-2 border rounded-md w-[160px] md:h-12"
+              className="p-2  w-[160px] md:h-12"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -242,7 +242,7 @@ const StepTwo = ({
               name="returnTime"
               value={bookingDetails.returnTime}
               onChange={handleTourInfoChange}
-              className="p-2 border rounded-md w-[120px] md:h-12"
+              className="p-2  w-[120px] md:h-12"
             />
           </div>
         </>
@@ -296,7 +296,7 @@ const StepTwo = ({
                 name="pickupDate"
                 value={bookingDetails.pickupDate}
                 onChange={handleTourInfoChange}
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 "
               />
 
               <Input
@@ -304,7 +304,7 @@ const StepTwo = ({
                 name="pickupTime"
                 value={bookingDetails.pickupTime}
                 onChange={handleTourInfoChange}
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 "
               />
 
               {selectedOption === "roundtrip" && (
@@ -314,14 +314,14 @@ const StepTwo = ({
                     name="returnDate"
                     value={bookingDetails.returnDate}
                     onChange={handleTourInfoChange}
-                    className="w-full p-2 border rounded-md"
+                    className="w-full p-2 "
                   />
                   <Input
                     type="time"
                     name="returnTime"
                     value={bookingDetails.returnTime}
                     onChange={handleTourInfoChange}
-                    className="w-full p-2 border rounded-md"
+                    className="w-full p-2 "
                   />
                 </>
               )}

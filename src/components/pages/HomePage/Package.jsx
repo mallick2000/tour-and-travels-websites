@@ -38,10 +38,25 @@ export default function Packages() {
 
   return (
     <main className="px-4 py-8 md:px-16 lg:px-20 bg-gray-50">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">
+      <h1 className="text-3xl font-bold text-gray-800">
         Trails from the Temple City:-
       </h1>
-
+      <div className="flex justify-end  gap-4 items-center mb-4">
+        <Button
+          onClick={handlePrev}
+          disabled={startIndex === 0}
+          className="p-2  bg-blue-500 text-white rounded-full disabled:opacity-50"
+        >
+          <ArrowLeft />
+        </Button>
+        <Button
+          onClick={handleNext}
+          disabled={startIndex + ITEMS_PER_PAGE >= PackageData.length}
+          className="p-2 rounded-full bg-blue-500 text-white disabled:opacity-50"
+        >
+          <ArrowRight />
+        </Button>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {visibleItems.map((item, index) => (
           <div
@@ -59,22 +74,6 @@ export default function Packages() {
             </div>
           </div>
         ))}
-      </div>
-      <div className="flex justify-end  gap-4 items-center mt-4">
-        <Button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className="p-2  bg-blue-500 text-white rounded-full disabled:opacity-50"
-        >
-          <ArrowLeft />
-        </Button>
-        <Button
-          onClick={handleNext}
-          disabled={startIndex + ITEMS_PER_PAGE >= PackageData.length}
-          className="p-2 rounded-full bg-blue-500 text-white disabled:opacity-50"
-        >
-          <ArrowRight />
-        </Button>
       </div>
     </main>
   );
