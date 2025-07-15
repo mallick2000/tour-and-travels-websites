@@ -5,22 +5,23 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 const carData = [
-  {
-    title: "Hyundai i10",
-    fuel: "Petrol",
-    transmission: "Manual",
-    image: "/cars/i10.jpg",
-    location: "Bhubaneswar",
-  },
-  {
-    title: "Hyundai Xcent",
-    fuel: "Petrol",
-    transmission: "Manual",
-    image: "/cars/xcent.jpg",
-    location: "Bhubaneswar",
-  },
+  // {
+  //   title: "Hyundai i10",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/i10.jpg",
+  //   location: "Bhubaneswar",
+  // },
+  // {
+  //   title: "Hyundai Xcent",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/xcent.jpg",
+  //   location: "Bhubaneswar",
+  // },
   {
     title: "Suzuki Swift",
     fuel: "Petrol",
@@ -28,39 +29,53 @@ const carData = [
     image: "/cars/swift.jpg",
     location: "Bhubaneswar",
   },
+  // {
+  //   title: "Toyota Etios",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/Etios.png",
+  //   location: "Bhubaneswar",
+  // },
   {
-    title: "Toyota Etios",
-    fuel: "Petrol",
-    transmission: "Manual",
-    image: "/cars/Etios.png",
-    location: "Bhubaneswar",
-  },
-  {
-    title: "Generic Sedan",
+    title: "Suzuki Ertiga",
     fuel: "Petrol",
     transmission: "Manual",
     image: "/cars/car.jpg",
     location: "Bhubaneswar",
   },
+  // {
+  //   title: "Chevrolet Beat",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/beat.jpg",
+  //   location: "Bhubaneswar",
+  // },
+  // {
+  //   title: "Honda Amaze",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/amaze.jpg",
+  //   location: "Bhubaneswar",
+  // },
+  // {
+  //   title: "Chevrolet Travera",
+  //   fuel: "Petrol",
+  //   transmission: "Manual",
+  //   image: "/cars/chevy.png",
+  //   location: "Bhubaneswar",
+  // },
   {
-    title: "Chevrolet Beat",
-    fuel: "Petrol",
+    title: "Innova Crysta",
+    fuel: "Diesel",
     transmission: "Manual",
-    image: "/cars/beat.jpg",
+    image: "/cars/inova.jpeg",
     location: "Bhubaneswar",
   },
   {
-    title: "Honda Amaze",
-    fuel: "Petrol",
+    title: "Tempo Traveller",
+    fuel: "Diesel",
     transmission: "Manual",
-    image: "/cars/amaze.jpg",
-    location: "Bhubaneswar",
-  },
-  {
-    title: "Chevrolet Spark",
-    fuel: "Petrol",
-    transmission: "Manual",
-    image: "/cars/chevy.png",
+    image: "/cars/force.jpg",
     location: "Bhubaneswar",
   },
 ];
@@ -125,7 +140,8 @@ export default function CardCab() {
                 <span>{car.location}</span>
                 <Button
                   onClick={() => handleBookNow(car)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-full font-semibold transition"
+                  variant="gradient"
+                  className="w-32"
                 >
                   Book Now
                 </Button>
@@ -136,9 +152,11 @@ export default function CardCab() {
 
         {/* View More Button */}
         <div className="flex justify-center mt-12">
-          <Button className="w-36 rounded-full bg-blue-500 hover:bg-blue-600 p-3 font-semibold text-white shadow-md transition">
-            View More
-          </Button>
+          <Link href="/cab">
+            <Button className="w-36 rounded-full " variant="gradient">
+              View More
+            </Button>
+          </Link>
         </div>
       </div>
       {/* Lightbox Modal */}

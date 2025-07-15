@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function CabBookingSection() {
   return (
-    <section className="relative w-full md:h-[600px] h-[500px] text-white">
+    <section className="relative w-full md:h-[700px] h-[500px] text-white">
       {/* Background Image */}
       <Image
         src="/sec5.jpg"
@@ -33,7 +33,7 @@ function CabBookingSection() {
 
         {/* Call to Action Button */}
         <Link href="/">
-          <Button className="bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">
+          <Button className="" variant="gradient">
             Book Your Ride Now
           </Button>
         </Link>

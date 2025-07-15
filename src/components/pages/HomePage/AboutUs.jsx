@@ -4,7 +4,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <section className="bg-white px-4 py-16 md:px-20 lg:flex lg:items-center lg:justify-between lg:gap-16">
+    <section className="bg-white px-4 py-16 md:px-20 lg:flex lg:items-center lg:justify-between lg:gap-16 ">
       {/* Text Content */}
       <div className="mb-12 max-w-xl lg:mb-0">
         <h2 className="text-4xl font-bold text-blue-950 mb-4">
@@ -29,7 +29,7 @@ const AboutUs = () => {
           <span className="ml-2 text-yellow-500">→</span>
         </a> */}
         <Link href="/about">
-          <Button className="bg-blue-500 px-6 py-3 hover:bg-blue-600 text-white font-semibold rounded-md w-32">
+          <Button variant="gradient" className="w-32">
             Read More
           </Button>
         </Link>

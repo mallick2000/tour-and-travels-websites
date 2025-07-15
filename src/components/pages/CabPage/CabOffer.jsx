@@ -3,7 +3,7 @@ import React from "react";
 const offers = [
   {
     title: "Flat ₹100 Off",
-    desc: "On first booking via app",
+    desc: "On first booking",
     code: "WELCOME100",
   },
   {

@@ -1,7 +1,6 @@
 "use client";
 
-import * as React from "react";
-
+import React, { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -14,6 +13,26 @@ import {
 import { Star } from "lucide-react";
 import Image from "next/image";
 
+// Reusable ReadMoreText component
+const ReadMoreText = ({ text, maxLength = 70 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (text.length <= maxLength) return <span>{text}</span>;
+
+  return (
+    <span>
+      {isExpanded ? text : text.slice(0, maxLength) + "..."}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="ml-1 text-blue-600 text-xs font-medium hover:underline"
+      >
+        {isExpanded ? "Show less" : "Read more"}
+      </button>
+    </span>
+  );
+};
+
+// Testimonial data
 const testimonials = [
   {
     name: "Anjali Sharma",
@@ -53,6 +72,7 @@ const testimonials = [
   },
 ];
 
+// Main Testimonials component
 export default function Testimonials() {
   return (
     <section className="bg-gradient-to-b from-gray-50 to-white py-16 px-6 md:px-20">
@@ -67,7 +87,7 @@ export default function Testimonials() {
       </div>
 
       <Carousel
-        className="max-w-6xl mx-auto "
+        className="max-w-6xl mx-auto"
         plugins={[
           Autoplay({
             delay: 2000,
@@ -92,7 +112,7 @@ export default function Testimonials() {
                       ))}
                     </div>
                     <p className="text-sm text-gray-700 leading-relaxed">
-                      “{t.text}”
+                      “<ReadMoreText text={t.text} />”
                     </p>
                     <div className="flex items-center gap-3 pt-4">
                       <Image

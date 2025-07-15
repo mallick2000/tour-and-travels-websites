@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-black text-white">
-      <div className="  px-6  lg:px-20 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="px-6 lg:px-20 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {/* Brand Description */}
         <div>
           <h2 className="text-xl font-semibold hover:text-yellow-300">
             Quick Cab
           </h2>
-          <p className="mt-2 text-sm text-gray-300 hover:text-yellow-300 max-w-xs">
+          <p className="mt-2 text-sm text-gray-300  max-w-xs">
             Book reliable outstation and local cabs at the best prices. 24/7
             support and on-time pickups.
           </p>
@@ -37,7 +37,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/annoucement" className="hover:text-yellow-300">
+              <Link href="/announcement" className="hover:text-yellow-300">
                 Announcement
               </Link>
             </li>
@@ -57,17 +57,44 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-gray-300">
             <li>
               <Link href="/cab" className="hover:text-yellow-300">
-                Cab-Book
+                Cab Booking
               </Link>
             </li>
             <li>
-              <Link href="/cab" className="hover:text-yellow-300">
-                Package Book
+              <Link href="/packages" className="hover:text-yellow-300">
+                Tour Packages
               </Link>
             </li>
             <li>
-              <Link href="/cab" className="hover:text-yellow-300">
+              <Link href="/attractions" className="hover:text-yellow-300">
                 Attractions
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Notices */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3 hover:text-yellow-300">
+            Notices
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-300">
+            <li>
+              <Link href="/privacy-policy" className="hover:text-yellow-300">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cancellation-policy"
+                className="hover:text-yellow-300"
+              >
+                Cancellation Policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="hover:text-yellow-300">
+                Terms & Conditions
               </Link>
             </li>
           </ul>
@@ -89,16 +116,18 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-6 pt-4 pb-6 text-center text-xs sm:text-sm text-gray-400 px-4">
         © 2025 Quick Cab. All Rights Reserved &nbsp;|&nbsp;
-        <Link href="#" className="hover:underline">
+        <Link href="/privacy-policy" className="hover:underline">
           Privacy Policy
         </Link>
         &nbsp;|&nbsp;
-        <Link href="#" className="hover:underline">
+        <Link href="/terms" className="hover:underline">
           Terms of Service
         </Link>
         &nbsp;|&nbsp; Powered by&nbsp;
         <Link
           href="https://clinquant-mooncake-372fbb.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-semibold text-white hover:underline"
         >
           TRIVI

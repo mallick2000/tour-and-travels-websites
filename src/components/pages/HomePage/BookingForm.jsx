@@ -100,7 +100,7 @@ export default function OdishaCabBookingForm() {
           )}
 
           {currentStep === 0 && (
-            <Link href="/about" className="mx-auto ">
+            <Link href="/search" className="mx-auto ">
               <Button
                 variant="gradient"
                 className="capitalize w-full md:w-40 text-xl  "
