@@ -1,18 +1,23 @@
-import CabBookingSection from "@/components/CabPage/BannerSection";
-import { Spacing } from "@/components/CabPage/CarRent";
-import RecentSearches from "@/components/CabPage/RecentSearch";
-import TaxiService from "@/components/CabPage/Sevice";
-import OurServices from "@/components/HomePage/Section/OurServices";
+import CabBookingSection from "@/components/pages/CabPage/BannerSection";
+
+import FAQ from "@/components/pages/CabPage/CabFaq";
+import OffersSection from "@/components/pages/CabPage/CabOffer";
+
+import TaxiService from "@/components/pages/CabPage/Sevice";
+import CarOptions from "@/components/pages/CabPage/Cabspecs";
+
+import Testimonials from "@/components/pages/HomePage/Testimonials";
+
 import React from "react";
 
 const page = () => {
   return (
     <>
       <CabBookingSection />
-      <RecentSearches />
-      <Spacing />
+      <CarOptions />
+      <OffersSection />
       <TaxiService />
-      <OurServices />
+      <Testimonials /> <FAQ />
     </>
   );
 };

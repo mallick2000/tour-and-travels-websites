@@ -1,5 +1,5 @@
-import AboutSection from "@/components/AboutUs/aboutUs";
-import AboutUs from "@/components/HomePage/Section/AboutUs";
+import AboutSection from "@/components/pages/AboutUs/aboutUs";
+
 import React from "react";
 
 const page = () => {

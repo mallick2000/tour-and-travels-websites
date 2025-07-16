@@ -1,4 +1,4 @@
-import CabRoute from "@/components/CabPage/CabRoute";
+import CabRoute from "@/components/pages/CabPage/CabRoute";
 import React from "react";
 
 const page = () => {
