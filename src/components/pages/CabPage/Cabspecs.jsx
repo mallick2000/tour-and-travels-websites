@@ -114,7 +114,7 @@ export default function CarAndCabList() {
   };
 
   useEffect(() => {
-    setShowAll(false); // Reset view when category changes
+    setShowAll(false);
   }, [selectedCategory]);
 
   return (
