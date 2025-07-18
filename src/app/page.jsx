@@ -8,6 +8,7 @@ import Newsletter from "@/components/pages/HomePage/Newsletter";
 import OurServices from "@/components/pages/HomePage/OurServices";
 import Packages from "@/components/pages/HomePage/Package";
 import Testimonials from "@/components/pages/HomePage/Testimonials";
+import TravelPlan from "@/components/pages/TravelPackage/OneWayPackage";
 
 export default function Home() {
   return (
@@ -16,10 +17,11 @@ export default function Home() {
       {/* <Cabspecs /> */}
 
       <TopDestinations />
-      <Annoucement />
+      <TravelPlan />
+      {/* <Annoucement /> */}
       <CardCab />
       <Destination />
-      <Packages />
+
       <AboutUs />
       <OurServices />
       <Newsletter />

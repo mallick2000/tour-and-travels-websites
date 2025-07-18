@@ -10,6 +10,7 @@ import {
   FerrisWheel,
   User,
   Headset,
+  Newspaper,
 } from "lucide-react";
 import {
   Sheet,
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import LoginForm from "@/components/Form/LoginForm"; // make sure this is the correct path
+import LoginForm from "@/components/Form/LoginForm";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -28,6 +29,7 @@ const Navbar = () => {
   const isAbsolute = isHome;
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false); // Control Sheet open state
 
   const navLinks = [
     { href: "/", icon: <Home className="w-5 h-5" />, label: "Home" },
@@ -37,7 +39,10 @@ const Navbar = () => {
       icon: <FerrisWheel className="w-5 h-5" />,
       label: "Attractions",
     },
+    { href: "/", icon: <Newspaper className="w-5 h-5" />, label: "Blog" },
   ];
+
+  const handleCloseSheet = () => setSheetOpen(false);
 
   return (
     <>
@@ -70,7 +75,7 @@ const Navbar = () => {
           {/* Profile icon opens modal */}
           <button
             onClick={() => setIsLoginOpen(true)}
-            className="flex items-center gap-2 hover:text-yellow-400 transition duration-300 hover:underline  cursor-pointer"
+            className="flex items-center gap-2 hover:text-yellow-400 transition duration-300 hover:underline cursor-pointer"
           >
             <User className="w-5 h-5" />
             <span>Profile</span>
@@ -86,7 +91,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className="lg:hidden">
-          <Sheet>
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="text-white" />
@@ -102,6 +107,7 @@ const Navbar = () => {
                     <Link
                       href={href}
                       className="flex items-center gap-3 hover:text-yellow-400 transition duration-300"
+                      onClick={handleCloseSheet}
                     >
                       {icon}
                       <span>{label}</span>
@@ -112,7 +118,10 @@ const Navbar = () => {
                 {/* Profile in mobile also opens modal */}
                 <li>
                   <button
-                    onClick={() => setIsLoginOpen(true)}
+                    onClick={() => {
+                      setIsLoginOpen(true);
+                      handleCloseSheet();
+                    }}
                     className="flex items-center gap-3 hover:text-yellow-400 transition duration-300"
                   >
                     <User className="w-5 h-5" />
@@ -120,11 +129,13 @@ const Navbar = () => {
                   </button>
                 </li>
 
-                <Link href="/cab">
-                  <Button className="bg-blue-500 hover:bg-blue-500 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300">
-                    06743525280
-                  </Button>
-                </Link>
+                <li>
+                  <Link href="/cab" onClick={handleCloseSheet}>
+                    <Button className="bg-blue-500 hover:bg-blue-500 p-4 text-lg text-white hover:text-white font-semibold rounded-md transition duration-300">
+                      06743525280
+                    </Button>
+                  </Link>
+                </li>
               </ul>
             </SheetContent>
           </Sheet>

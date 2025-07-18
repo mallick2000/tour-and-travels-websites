@@ -86,7 +86,7 @@ export function TourPackage() {
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-4">
         <h2 className="text-2xl font-bold">Package Overview</h2>
         <p className="text-lg text-gray-700 mt-4">
           Odisha (formerly Orissa), an eastern Indian state on the Bay of

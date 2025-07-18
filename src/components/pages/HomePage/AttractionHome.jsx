@@ -27,7 +27,7 @@ const destinations = [
 
 const TopDestinations = () => {
   return (
-    <section className="bg-white py-12 px-6 md:px-12 lg:px-24">
+    <section className="bg-white py-12 px-6 md:px-12 lg:px-20">
       <h1 className="text-3xl mb-2 text-center text-gray-800 tracking-wide">
         <span className="font-light"> Insight</span>
         <span className="font-bold text-blue-500"> Recommendations</span>

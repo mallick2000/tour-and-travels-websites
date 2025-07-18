@@ -5,6 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ArrowDownUp, ArrowLeftRight, CarTaxiFront } from "lucide-react";
 import Link from "next/link";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from "@/components/ui/select";
 
 const tripOptions = [
   { id: "oneway", label: "One-way", title: "Book One Way Cab" },
@@ -151,9 +159,6 @@ const StepOne = ({ selectedOption, handleTourTypeChange }) => (
   </div>
 );
 
-// ----------------------------
-// Step Two
-// ----------------------------
 const StepTwo = ({
   selectedOption,
   swapLocations,
@@ -202,47 +207,44 @@ const StepTwo = ({
         </>
       )}
       <div className="flex flex-col space-y-2 ">
-        <Label htmlFor="pickupDate">Pickup Date</Label>
+        <Label htmlFor="pickupDate">Pickup Date & Time</Label>
         <Input
-          type="date"
+          type="datetime-local"
           name="pickupDate"
           value={bookingDetails.pickupDate}
           onChange={handleTourInfoChange}
-          className="p-2  w-[160px] md:h-12 "
+          className="p-2  w-[200px] md:h-12 "
         />
       </div>
-      <div className="flex flex-col space-y-2 ">
-        <Label htmlFor="pickupTime">Pickup Time</Label>
-        <Input
-          type="time"
-          name="pickupTime"
-          value={bookingDetails.pickupTime}
-          onChange={handleTourInfoChange}
-          className="p-2  w-[120px] md:h-12"
-        />
-      </div>
+      {selectedOption === "rental" && (
+        <div className="flex flex-col space-y-2 ">
+          <Label htmlFor="SelectHours">Select Duration</Label>{" "}
+          <Select>
+            <SelectTrigger className="w-40 border rounded  text-sm h-20 bg-white text-black ">
+              <SelectValue placeholder="Select Hours" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="4">04 Hrs</SelectItem>
+                <SelectItem value="8">08 Hrs</SelectItem>
+                <SelectItem value="12">12 Hrs</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       {selectedOption === "roundtrip" && (
         <>
           <div className="flex flex-col space-y-2">
-            <Label htmlFor="returnDate">Return Date</Label>
+            <Label htmlFor="returnDate">Return Date & Time</Label>
             <Input
-              type="date"
+              type="datetime-local"
               name="returnDate"
               min={bookingDetails.pickupDate}
               value={bookingDetails.returnDate}
               onChange={handleTourInfoChange}
-              className="p-2  w-[160px] md:h-12"
-            />
-          </div>
-          <div className="flex flex-col space-y-2">
-            <Label htmlFor="returnTime">Return Time</Label>
-            <Input
-              type="time"
-              name="returnTime"
-              value={bookingDetails.returnTime}
-              onChange={handleTourInfoChange}
-              className="p-2  w-[120px] md:h-12"
+              className="p-2  w-[200px] md:h-12"
             />
           </div>
         </>
